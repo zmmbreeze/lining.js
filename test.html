@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lining.js</title>
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/normalize.css" />
+    <link rel="stylesheet" href="assets/test.css" />
+</head>
+<body>
+    <div id="result">
+    </div>
+<div class="main">
+    <h1>Lining.js</h1>
+
+    <div class="demo" id="demo">
+        <p>Inspired <img src="./assets/80x60.gif"/>by our deep<span class="caret-top"></span><span class="caret-bottom"></span> experience<span class="caret-top-3"></span><span class="caret-bottom-3"></span><img style="vertical-align:-100px;" src="./assets/80x60.gif"/> designing<span class="caret-top-4">&nbsp;</span><span class="caret-bottom-4">&nbsp;</span> for the web, we’ve given Writer for Mac a responsive design, changing the font size based on window width. This maintains the text’s typographic proportions, zooming in and out without reflowing the text. I don’t know why it took us so long to find this obvious solution. However, given that no one else has done it, the simplicity of this solution is perhaps not as obvious as it seems in hindsight. With all the custom features built into Writer for Mac, like Focus Mode and Auto Markdown, technically it was not as easy as you’d expect. But we’ve taken the time to address these details, so that this new feature feels obvious and natural.</p>
+        <p>While we <span class="caret-top-1"></span><span class="caret-bottom-1"></span>experimented with liquid resizing, we decided to go with a three-step adaptive layout. This is why:</p>
+        <ol>
+<li><em>Big size for dif<span class="caret-top-5">&nbsp;</span><span class="caret-bottom-5">&nbsp;</span>ficult writing:</em> Seeing your sentence from close slows down your pace. This is particularly helpful if you have a tough subject to write about, that requires you to take one step at a time. Especially when paired with Focus Mode, this helps you write that difficult scientific paper, poem or philosophical text.</li>
+<li><em>Medium size for Writing and editing:</em> This works well for quick, easy writing and editing.</li>
+<li><em>Small size for reading:</em> Some writers like to use a small font size to write because it allows them to see the surrounding text. However for many people a small size reveals <em>too much</em> text. Seeing too much text can lead to fast typing, careless thinking, and the temptation to stop writing and start editing. Some texts (and some writers) will benefit from this, but we find the small size works best for moving text around, “big picture” edits and reading what you’ve written.</li>
+        </ol>
+        <p>我与父亲不相见已二年余了，我最不能忘记的是他的背影。</p>
+        <p>那年冬天，祖母死了，父亲的差使也交卸了，正是祸不单行的日子。我从北京到徐州，打算跟着父亲奔丧回家。到徐州见着父亲，看见满院狼藉的东西，又想起祖母，不禁簌簌地流下眼泪。父亲说：“事已如此，不必难过，好在天无绝人之路！”</p>
+        <p>回家变卖典质，父亲还了亏空；又借钱办了丧事。这些日子，家中光景很是惨淡，一半为了丧事，一半为了父亲赋闲。丧事完毕，父亲要到南京谋事，我也要回北京念书，我们便同行。</p>
+    </div>
+
+
+    <script src="assets/jquery-1.10.2.js"></script>
+    <script>
+window.onload = function() {
+    var topp = $('.caret-top').offset();
+    var bottom = $('.caret-bottom').offset();
+    var topp1 = $('.caret-top-1').offset();
+    var bottom1 = $('.caret-bottom-1').offset();
+    var topp3 = $('.caret-top-3').offset();
+    var bottom3 = $('.caret-bottom-3').offset();
+    var topp4 = $('.caret-top-4').offset();
+    var bottom4 = $('.caret-bottom-4').offset();
+    var topp5 = $('.caret-top-5').offset();
+    var bottom5 = $('.caret-bottom-5').offset();
+    $('#result').html(
+        '<p>' +
+            'top:' + topp.top + ',' + topp.left + '<br/>' +
+            'bottom:' + bottom.top + ',' + bottom.left + '<br/>' +
+            'line-height:' + (bottom.top - topp.top) + '<br/>' +
+      '</p><p>'+
+            'top1:' + topp1.top + ',' + topp1.left + '<br/>' +
+            'bottom1:' + bottom1.top + ',' + bottom1.left + '<br/>' +
+            'line-height1:' + (bottom1.top - topp1.top) + '<br/>' +
+        '</p><p>' +
+            'top3:' + topp3.top + ',' + topp3.left + '<br/>' +
+            'bottom3:' + bottom3.top + ',' + bottom3.left + '<br/>' +
+            'line-height3:' + (bottom3.top - topp3.top) + '<br/>' +
+        '</p><p>' +
+            'top4:' + topp4.top + ',' + topp4.left + '<br/>' +
+            'bottom4:' + bottom4.top + ',' + bottom4.left + '<br/>' +
+            'line-height4:' + (bottom4.top - topp4.top) + '<br/>' +
+        '</p><p>' +
+            'top5:' + topp5.top + ',' + topp5.left + '<br/>' +
+            'bottom5:' + bottom5.top + ',' + bottom5.left + '<br/>' +
+            'line-height5:' + (bottom5.top - topp5.top) + '<br/>' +
+        '</p>'
+    );
+};
+    </script>
+</div>
+</body>
+</html>
+

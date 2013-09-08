@@ -1,0 +1,100 @@
+body {
+    font-family: 'Quattrocento', serif;
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.main {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin: 1em 0 0;
+    font-size: 4em;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 1.3125em;
+    line-height: 2em;
+    margin: 1em 0;
+}
+
+ol {
+    font-size: 1.3125em;
+    line-height: 2em;
+}
+
+.demo {
+    width: 40em;
+    margin: 0 auto;
+}
+
+.caret-top {
+    vertical-align: top;
+    display: inline-block;
+    height: 0;
+    width: 0;
+    background-color: red;
+}
+
+.caret-bottom {
+    vertical-align: bottom;
+    display: inline-block;
+    height: 0;
+    width: 0;
+    clip: rect(0, 0, 0, 0);
+    background-color: red;
+}
+
+.caret-top-1 {
+    vertical-align: top;
+    display: inline-block;
+    height: 0;
+    width: 1em;
+    background-color: red;
+}
+
+.caret-bottom-1 {
+    vertical-align: bottom;
+    display: inline-block;
+    height: 0;
+    width: 1em;
+    background-color: red;
+}
+
+.caret-top-3 {
+    vertical-align: top;
+    display: inline-block;
+    height: 1px;
+    width: 1em;
+    background-color: red;
+}
+
+.caret-bottom-3 {
+    vertical-align: bottom;
+    display: inline-block;
+    height: 1px;
+    width: 1em;
+    background-color: red;
+}
+
+.caret-top-5,
+.caret-top-4 {
+    vertical-align: top;
+    height: 1px;
+    width: 0;
+    background-color: red;
+}
+
+.caret-bottom-5,
+.caret-bottom-4 {
+    vertical-align: bottom;
+    height: 1px;
+    width: 0;
+    background-color: red;
+}
