@@ -1,3 +1,5 @@
+/*global document:false */
+
 (function() {
     var hash = 'da30f989015f41633488d5f17af66726';
     var lineNumberKey = 'lineNumber' + hash;
@@ -196,6 +198,9 @@
 
         // create lines
         this.lines = [];
+        this._currentTop = el.offsetTop +
+                parseInt(Util.getStyle(el, 'border-top-width'), 10) +
+                parseInt(Util.getStyle(el, 'padding-top'), 10);
         this._currentNumber = 1;
         this._measure(el, true);
         this._createLines(el);
@@ -216,23 +221,31 @@
 
     Lining.prototype._splitText = function(textNode, parent) {
         var text = textNode.data;
-        var txt;
-        var mark;
-        var top;
-        for (var i = 0, l = text.length; i < l; i++) {
-            txt = document.createTextNode(text.charAt(i));
-            mark = this._createMark();
-            parent.insertBefore(txt, textNode);
-            parent.insertBefore(mark, textNode);
-            top = mark.offsetTop;
-            if (this._currentTop < top) {
-                this._currentTop = top;
-                this._currentNumber++;
-            }
-            txt[lineNumberKey] = this._currentNumber;
-        }
-        parent.removeChild(textNode);
 
+        var firstTxt = document.createTextNode(text.charAt(0));
+        parent.insertBefore(firstTxt, textNode);
+        parent.insertBefore(this._createMark(), textNode);
+
+        for (var i = 1, l = text.length; i < l; i++) {
+            parent.insertBefore(document.createTextNode(text.charAt(i)), textNode);
+            parent.insertBefore(this._createMark(), textNode);
+        }
+
+        var top;
+        var next = firstTxt.nextSibling;
+        while (next !== textNode ) {
+            if (next.nodeType === 1) {
+                top = next.offsetTop;
+                if (this._currentTop < top) {
+                    this._currentTop = top;
+                    this._currentNumber++;
+                }
+                next.previousSibling[lineNumberKey] = this._currentNumber;
+            }
+            next = next.nextSibling;
+        }
+
+        parent.removeChild(textNode);
     };
 
     Lining.prototype._measure = function(el) {
@@ -244,13 +257,12 @@
         for (var i = 0, l = children.length; i < l; i++) {
             child = children[i];
             top = this._insertMarkAfter(child, el);
-            if (!this._currentTop) {
-                this._currentTop = top;
-            }
 
             if (this._currentTop < top) {
                 if (child.nodeType === 3) {
                     // split text
+                    // TODO
+                    this._currentTop = null;
                     this._splitText(child, el);
                 } else if (Util.getStyle(child, 'display') === 'inline' &&
                            child.childNodes.length !== 0) {
