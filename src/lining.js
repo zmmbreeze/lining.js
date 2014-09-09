@@ -12,104 +12,6 @@
 
     var Util = {
         /**
-         * get css style
-         *
-         * @param {Element} el dom element
-         * @param {string} cssStyleName
-         * @return {string} style
-         */
-        getStyle: function(el, cssStyleNamem) {
-            if (document.defaultView && document.defaultView.getComputedStyle) {
-                Util.getStyle = function(el, cssStyleName) {
-                    var re = '';
-                    var defaultView = el.ownerDocument.defaultView;
-                    if (!defaultView) {
-                        return '';
-                    }
-
-                    cssStyleName = cssStyleName
-                        .replace(upperReg, '-$1')
-                        .toLowerCase();
-                    var computedStyle = defaultView.getComputedStyle(el, null);
-                    if (computedStyle) {
-                        re = computedStyle.getPropertyValue(cssStyleName);
-                    }
-                    return re;
-                };
-            } else {
-                Util.getStyle = function(el, cssStyleName) {
-                    cssStyleName = cssStyleName.replace(dashReg, function($1) {
-                        return $1.charAt(1).toUpperCase();
-                    });
-                    var left;
-                    var rsLeft;
-                    var re = el.currentStyle &&
-                             el.currentStyle[cssStyleName];
-                    var style = el.style;
-
-                    // From the awesome hack by Dean Edwards
-                    // http://erik.eae.net/archives/2007/07/27/18.54.15/#comment-102291
-
-                    // If we're not dealing with a regular pixel number
-                    // but a number that has a weird ending,
-                    // we need to convert it to pixels
-                    if ( !numpxReg.test( re ) && numReg.test( re ) ) {
-                        // Remember the original values
-                        left = style.left;
-                        rsLeft = el.runtimeStyle.left;
-
-                        // Put in the new values to get a computed value out
-                        el.runtimeStyle.left = el.currentStyle.left;
-                        style.left = cssStyleName === 'fontSize' ?
-                                        '1em' :
-                                        (re || 0);
-                        re = style.pixelLeft + 'px';
-
-                        // Revert the changed values
-                        style.left = left;
-                        el.runtimeStyle.left = rsLeft;
-                    }
-
-                    return re === '' ? 'auto' : re.toString();
-                };
-            }
-
-            return Util.getStyle.apply(this, arguments);
-        },
-        /**
-         * Check if element is inline style.
-         *
-         * @param {Element} el .
-         * @return {boolean} .
-         */
-        isInlineElement: function(el) {
-            var display = Util.getStyle(el, 'display');
-            return display.indexOf('inline') !== -1;
-        },
-        /**
-         * Is block-level element.
-         *
-         * @param {Element} el .
-         * @return {boolean} .
-         */
-        isBlockElement: function(el) {
-            var display = Util.getStyle(el, 'display');
-            return display === 'block' ||
-                   display === 'list-item' ||
-                   display === 'inline-block' ||
-                   display === 'table-cell' ||
-                   display === 'table-caption';
-        },
-        /**
-         * If this element has a scrollbar.
-         *
-         * @param {Element} el .
-         * @return {boolean} .
-         */
-        hasScrollBar: function(el) {
-            
-        },
-        /**
          * add CSS rule at last.
          *
          * @param {string} selector '.foo'.
@@ -144,26 +46,22 @@
 
             // init style
             Util.addCSSRule(
-                'lines',
-                'display:block;' +
-                'overflow:auto;'
-            );
-            Util.addCSSRule(
                 'line',
-                'display:block;' +
-                'white-space:nowrap;'
+                'display:inline;'
             );
-            Util.addCSSRule(
-                '.' + markClassName,
-                'position:absolute !important;' +
-                'top:auto !important;' +
-                'left:auto !important;' +
-                'right:auto !important;' +
-                'bottom:auto !important;' +
-                'vertical-align:top !important;' +
-                'width:0 !important;' +
-                'height:0 !important;'
-            );
+        },
+        adjustTextRange: function (r) {
+            var start = r.startContainer;
+            var startOffset = r.startOffset;
+            if (start.nodeType === 3) {
+                start.splitText(startOffset);
+            }
+
+            var end = r.endContainer;
+            var endOffset = r.endOffset;
+            if (end.nodeType === 3) {
+                end.splitText(endOffset);
+            }
         },
         /**
          * Merge two array or array like object.
@@ -189,157 +87,51 @@
          * @type {Element}
          * @private
          */
-        var el = this.el = element;
-
-        // force it to become block element.
-        el.style.display = 'block';
+        this.e = element;
 
         Util.init();
 
-        // create lines
-        this.lines = [];
-        this._currentTop = el.offsetTop +
-                parseInt(Util.getStyle(el, 'border-top-width'), 10) +
-                parseInt(Util.getStyle(el, 'padding-top'), 10);
-        this._currentNumber = 1;
-        this._measure(el, true);
-        this._createLines(el);
-        this._appendLines(el);
+        this.lineCount = 0;
+        this.measure();
     };
 
-    Lining.prototype._createMark = function() {
-        var span = document.createElement('span');
-        span.className = markClassName;
-        return span;
-    };
-
-    Lining.prototype._insertMarkAfter = function(el, parent) {
-        var mark = this._createMark();
-        parent.insertBefore(mark, el.nextSibling);
-        return mark.offsetTop;
-    };
-
-    Lining.prototype._splitText = function(textNode, parent) {
-        var text = textNode.data;
-
-        var firstTxt = document.createTextNode(text.charAt(0));
-        parent.insertBefore(firstTxt, textNode);
-        parent.insertBefore(this._createMark(), textNode);
-
-        for (var i = 1, l = text.length; i < l; i++) {
-            parent.insertBefore(document.createTextNode(text.charAt(i)), textNode);
-            parent.insertBefore(this._createMark(), textNode);
+    Lining.prototype.setCursorAtFirst = function (s, r) {
+        r.setStart(this.e, 0);
+        r.collapse(true);
+        if (s.rangeCount) {
+            s.removeAllRanges();
         }
-
-        var top;
-        var next = firstTxt.nextSibling;
-        while (next !== textNode ) {
-            if (next.nodeType === 1) {
-                top = next.offsetTop;
-                if (this._currentTop < top) {
-                    this._currentTop = top;
-                    this._currentNumber++;
-                }
-                next.previousSibling[lineNumberKey] = this._currentNumber;
-            }
-            next = next.nextSibling;
-        }
-
-        parent.removeChild(textNode);
+        s.addRange(r);
     };
 
-    Lining.prototype._measure = function(el) {
-        var children = [];
-        Util.mergeArray(children, el.childNodes);
+    Lining.prototype.measure = function() {
+        var doc = this.e.ownerDocument;
+        var win = doc.defaultView;
+        var s = win.getSelection();
+        var r = doc.createRange();
+        this.setCursorAtFirst(s, r);
+        s.modify('extend', 'forward', 'lineboundary');
+    };
 
-        var child;
-        var top;
-        for (var i = 0, l = children.length; i < l; i++) {
-            child = children[i];
-            top = this._insertMarkAfter(child, el);
-
-            if (this._currentTop < top) {
-                if (child.nodeType === 3) {
-                    // split text
-                    // TODO
-                    this._currentTop = null;
-                    this._splitText(child, el);
-                } else if (Util.getStyle(child, 'display') === 'inline' &&
-                           child.childNodes.length !== 0) {
-                    // split node
-                    this._measure(child);
-                    child[lineNumberKey] = this._currentNumber;
-                } else {
-                    // next line
-                    this._currentTop = top;
-                    this._currentNumber++;
-                    child[lineNumberKey] = this._currentNumber;
-                }
-            } else {
-                // current line
-                child[lineNumberKey] = this._currentNumber;
-            }
+    Lining.prototype.createLine = function(s, r) {
+        var line = document.createElement('line');
+        try {
+            r.surroundContents(line);
+        }
+        catch (e) {
+            this.surroundContents(line, r);
         }
     };
 
-    Lining.prototype._pushIntoLine = function(el, parent) {
-        var lineNumber = el[lineNumberKey];
-        if (!lineNumber) {
-            parent.removeChild(el);
-            return;
-        }
-
-        var line = this.lines[lineNumber];
-        if (!line) {
-            line = document.createElement('line');
-            this.lines[lineNumber] = line;
-        }
-
-        line.appendChild(el);
-    };
-
-    Lining.prototype._createLines = function(el) {
-        var children = [];
-        Util.mergeArray(children, el.childNodes);
-
-        var child;
-        var top;
-        for (var i = 0, l = children.length; i < l; i++) {
-            child = children[i];
-            this._pushIntoLine(child, el);
+    Lining.prototype.surroundContents = function(line, r) {
+        Util.adjustTextRange(r);
+        var commonAncestor = r.commonAncestorContainer;
+        var start;
+        while (start = r.startContainer.parentNode) {
+            
         }
     };
 
-    Lining.prototype._appendLines = function(el) {
-        var linesEl = document.createElement('lines');
-        var lines = this.lines;
-        var line;
-        for (var i = 1, l = lines.length; i < l; i++) {
-            line = lines[i];
-            line.className = 'line' + i;
-            linesEl.appendChild(line);
-        }
-
-        el.appendChild(linesEl);
-    };
-
-    /**
-     * Watch style(width) change and update it.
-     */
-    Lining.prototype.wratch = function() {
-        var el = this.el;
-        var lines = document.createElement('lines');
-        el.appendChild(lines);
-        this.lines = lines;
-    };
-
-    /**
-     * unwatch
-     *
-     */
-    Lining.prototype.unwratch = function() {
-        var el = this.el;
-    };
 
 
     /**
