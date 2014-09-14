@@ -10,7 +10,7 @@
     var numpxReg = /^-?\d+(?:px)?$/i;
     var styleSheet;
 
-    var Util = {
+    var util = {
         /**
          * add CSS rule at last.
          *
@@ -45,12 +45,17 @@
             initStyle.inited = true;
 
             // init style
-            Util.addCSSRule(
+            util.addCSSRule(
                 'line',
                 'display:inline;'
             );
         },
-        adjustTextRange: function (r) {
+        /**
+         * split text node.
+         *
+         * @param {Range} r
+         */
+        splitTextNode: function (r) {
             var start = r.startContainer;
             var startOffset = r.startOffset;
             if (start.nodeType === 3) {
@@ -62,6 +67,33 @@
             if (end.nodeType === 3) {
                 end.splitText(endOffset);
             }
+        },
+        /**
+         * split node.
+         *
+         * @param {Element} node
+         * @param {boolean} appendIt
+         */
+        splitNode: function (node, appendIt) {
+            var parent = node.parentNode;
+            var clone = parent.cloneNode(false);
+            var tmp = parent.lastChild;
+            var cloneChildren = [];
+
+            do {
+                cloneChildren.push(tmp);
+                tmp = tmp.previousSibling;
+            } while (tmp !== node)
+            cloneChildren.push(tmp);
+
+            while (cloneChildren.length) {
+                clone.appendChild(cloneChildren.pop());
+            }
+
+            if (appendIt) {
+                parent.parentNode.insertBefore(clone, parent.nextSibling);
+            }
+            return clone;
         },
         /**
          * Merge two array or array like object.
@@ -89,7 +121,7 @@
          */
         this.e = element;
 
-        Util.init();
+        util.init();
 
         this.lineCount = 0;
         this.measure();
@@ -111,24 +143,44 @@
         var r = doc.createRange();
         this.setCursorAtFirst(s, r);
         s.modify('extend', 'forward', 'lineboundary');
+        r = s.getRangeAt(0);
+        this.createLine(s, r);
     };
 
     Lining.prototype.createLine = function(s, r) {
         var line = document.createElement('line');
-        try {
-            r.surroundContents(line);
-        }
-        catch (e) {
             this.surroundContents(line, r);
-        }
     };
 
     Lining.prototype.surroundContents = function(line, r) {
-        Util.adjustTextRange(r);
+        util.splitTextNode(r);
         var commonAncestor = r.commonAncestorContainer;
-        var start;
-        while (start = r.startContainer.parentNode) {
-            
+        var start = r.startContainer;
+        var startParent = start;
+        while (startParent !== commonAncestor) {
+            start = util.splitNode(start, true);
+            startParent = start.parentNode;
+        }
+
+        var end = r.endContainer;
+        var endParent = end;
+        while (endParent !== commonAncestor) {
+            end = util.splitNode(end, true);
+            endParent = end.parentNode;
+        }
+
+        start.parentNode.insertBefore(line, start);
+        var tmp = end;
+        var tmps = [];
+
+        do {
+            tmps.push(tmp);
+            tmp = tmp.previousSibling;
+        } while (tmp !== start)
+        tmps.push(start);
+
+        while (tmps.length) {
+            line.appendChild(tmps.pop());
         }
     };
 
@@ -146,4 +198,6 @@
                 element
         );
     };
+
+    window.util = util;
 })();

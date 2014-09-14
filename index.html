@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/index.css" />
 </head>
 <body>
+    <span>xxxx<b id="t">xxxx|yyyyy<i>mmm</i>nnnn</b>mm</span><b>cccccc</b>
     <div id="result">
     </div>
 <div class="main">
@@ -36,6 +37,11 @@
     window.onload = function() {
         window.l = lining('demo');
     };
+    </script>
+    <script>
+    var t = document.getElementById('t');
+    t.childNodes[0].splitText(5);
+    console.log(util.splitNode(t.childNodes[1]));
     </script>
 </div>
 </body>
