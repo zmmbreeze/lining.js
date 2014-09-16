@@ -69,6 +69,36 @@
             }
         },
         /**
+         * 移除节点
+         * @param {Element} startNode
+         * @param {Element=} opt_endNode
+         * @return {Array.<Element>} children
+         */
+        removeChildren: function (startNode, opt_endNode) {
+            var removed = [];
+            var parent = startNode.parentNode;
+            var endNode = opt_endNode || parent.lastChild;
+            var prev;
+            while (startNode !== endNode) {
+                removed.push(endNode);
+                prev = endNode.previousSibling;
+                parent.removeChild(endNode);
+                endNode = prev;
+            }
+            removed.push(startNode);
+            return removed;
+        },
+        /**
+         * append children
+         * @param {Element} parent
+         * @param {Array.<Element>} children
+         */
+        appendChildren: function (parent, children) {
+            while (children.length) {
+                parent.appendChild(children.pop());
+            }
+        },
+        /**
          * split node.
          *
          * @param {Element} node
@@ -77,18 +107,8 @@
         splitNode: function (node, appendIt) {
             var parent = node.parentNode;
             var clone = parent.cloneNode(false);
-            var tmp = parent.lastChild;
-            var cloneChildren = [];
 
-            do {
-                cloneChildren.push(tmp);
-                tmp = tmp.previousSibling;
-            } while (tmp !== node)
-            cloneChildren.push(tmp);
-
-            while (cloneChildren.length) {
-                clone.appendChild(cloneChildren.pop());
-            }
+            util.appendChildren(clone, util.removeChildren(node));
 
             if (appendIt) {
                 parent.parentNode.insertBefore(clone, parent.nextSibling);
@@ -121,6 +141,16 @@
          */
         this.e = element;
 
+        /**
+         * @type {Document}
+         */
+        this.doc = null;
+
+        /**
+         * @type {Window}
+         */
+        this.win = null;
+
         util.init();
 
         this.lineCount = 0;
@@ -136,11 +166,15 @@
         s.addRange(r);
     };
 
+    Lining.prototype.getRange = function () {
+        return this.win.getSelection().getRangeAt(0);
+    };
+
     Lining.prototype.measure = function() {
-        var doc = this.e.ownerDocument;
-        var win = doc.defaultView;
-        var s = win.getSelection();
-        var r = doc.createRange();
+        this.doc = this.e.ownerDocument;
+        this.win = this.doc.defaultView;
+        var s = this.win.getSelection();
+        var r = this.doc.createRange();
         this.setCursorAtFirst(s, r);
         s.modify('extend', 'forward', 'lineboundary');
         r = s.getRangeAt(0);
@@ -149,19 +183,30 @@
 
     Lining.prototype.createLine = function(s, r) {
         var line = document.createElement('line');
+        /*
+        try {
+            r.surroundContents(line);
+        }
+        catch (e) {
             this.surroundContents(line, r);
+        }
+        */
+        this.surroundContents(line, r);
     };
 
     Lining.prototype.surroundContents = function(line, r) {
         util.splitTextNode(r);
+        r = this.getRange();
         var commonAncestor = r.commonAncestorContainer;
         var start = r.startContainer;
         var startParent = start;
         while (startParent !== commonAncestor) {
+            console.log(startParent, commonAncestor);
             start = util.splitNode(start, true);
             startParent = start.parentNode;
         }
 
+        /*
         var end = r.endContainer;
         var endParent = end;
         while (endParent !== commonAncestor) {
@@ -182,6 +227,7 @@
         while (tmps.length) {
             line.appendChild(tmps.pop());
         }
+        */
     };
 
 
