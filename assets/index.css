@@ -43,7 +43,7 @@ body {
     position: relative;
 }
 .linenumber line:before {
-    content: attr(index);
+    content: attr(index) '.';
     position: absolute;
     right: 10px;
     margin-right: 100%;

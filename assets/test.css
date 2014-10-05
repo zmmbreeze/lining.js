@@ -44,7 +44,7 @@ line {
     background-color: #EFEFEF;
 }
 line:before {
-    content: attr(index);
+    content: attr(index) '.';
     position: absolute;
     right: 10px;
     margin-right: 100%;

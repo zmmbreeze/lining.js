@@ -465,7 +465,7 @@
     };
 
     /**
-     *
+     * set cursor.
      * @param {ELement} start
      * @param {number} startOffset
      * @param {Selection} opt_s
@@ -647,11 +647,11 @@
         }
 
         this._currentLine = line;
-        this._adjustLine(line, s);
         if (!line.previousSibling
             || util.findContentSibling(line, 'backward')[0]) {
             line.setAttribute('first-in-element', '');
         }
+        this._adjustLine(line, s);
     };
 
     /**
