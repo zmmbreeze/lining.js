@@ -6,77 +6,21 @@
     <!-- <link href='http://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet' type='text/css'> -->
     <link rel="stylesheet" href="assets/normalize.css" />
     <link rel="stylesheet" href="assets/index.css" />
-    <style>
-    line {
-        color: #FFF;
-        background-color: #434A54;
-    }
-    </style>
 </head>
 <body>
-<div class="main">
-    <p>
-        <input type="button" onclick="selectFirstLine()" value="select first line">
-        <input type="button" onclick="selectLastLine()" value="select last line">
-        <input type="button" onclick="extendLine()" value="extend line">
-        <input type="button" onclick="moveLine()" value="move line">
-    </p>
-    <h1>Lining.js</h1>
-
-    <div class="demo" id="demo">
-        那年冬天，祖母死了，父亲的差使也交卸了，正是祸不单行的日子。我从北京到徐州，打算跟着父亲奔丧回家。到徐州见着父亲，看见满院狼藉的东西，又想起祖母，不禁簌簌地流下眼泪。父亲说：“事已如此，不必难过，好在天无绝人之路！”
-        <p>Inspired <img src="./assets/80x60.gif"/>by <span>our <em>deep</em>a</span> experience<img style="vertical-align:-100px;" src="./assets/80x60.gif"/> designing for the web, we’ve given Writer for Mac a responsive design, changing the font size based on window width. This maintains the text’s typographic proportions, zooming in and out without reflowing the text. I don’t know why it took us so long to find this obvious solution. However, given that no one else has done it, the simplicity of this solution is perhaps not as obvious as it seems in hindsight. With all the custom features built into Writer for Mac, like Focus Mode and Auto Markdown, technically it was not as easy as you’d expect. But we’ve taken the time to address these details, so that this new feature feels obvious and natural.</p>
-        <p>While we experimented with liquid resizing, we decided to go with a three-step adaptive layout. This is why:</p>
-        <ol>
-            <li><em>Big size for difficult writing:</em> Seeing your sentence from close slows down your pace. This is particularly helpful if you have a tough subject to write about, that requires you to take one step at a time. Especially when paired with Focus Mode, this helps you write that difficult scientific paper, poem or philosophical text.</li>
-            <li><em>Medium size for Writing and editing:</em> This works well for quick, easy writing and editing.</li>
-            <li><em>Small size for reading:</em> Some writers like to use a small font size to write because it allows them to see the surrounding text. However for many people a small size reveals <em>too much</em> text. Seeing too much text can lead to fast typing, careless thinking, and the temptation to stop writing and start editing. Some texts (and some writers) will benefit from this, but we find the small size works best for moving text around, “big picture” edits and reading what you’ve written.</li>
-        </ol>
-        <p>我与父亲不相见已二年余了，我最不能忘记的是他的背影。</p>
-        <p>回家变卖典质，父亲还了亏空；又借钱办了丧事。这些日子，家中光景很是惨淡，一半为了丧事，一半为了父亲赋闲。丧事完毕，父亲要到南京谋事，我也要回北京念书，我们便同行。</p>
+    <div class="main">
+        <h1>Lining.js</h1>
+        <div>A javascript util let you write style for `lines`. Inspired by <a target="_blank" href="#">Lettering.js</a></div>
+        <h2>DEMO:</h2>
+        <div id="demo" class="demo linenumber">
+            <h3>Hamlet:</h3>
+            To be or not to be that is the question. Whether it's nobler in the mind to suffer. The slings and arrows of outrageous fortune orr to take arms against a sea of troubles, And by opposing end them.
+        </div>
     </div>
-
 
     <script src="src/lining.js"></script>
     <script>
-    window.onload = function() {
-        window.l = lining('demo');
-    };
-    </script>
-    <script>
-    function selectFirstLine() {
-        var lines = document.getElementsByTagName('line');
-        var lastLine = lines[0];
-        var s = window.getSelection();
-        var r = document.createRange();
-        r.selectNodeContents(lastLine);
-        s.removeAllRanges();
-        s.addRange(r);
-    }
-    function selectLastLine() {
-        var lines = document.getElementsByTagName('line');
-        var lastLine = lines[lines.length - 1];
-        var s = window.getSelection();
-        var r = document.createRange();
-        r.selectNodeContents(lastLine);
-        s.removeAllRanges();
-        s.addRange(r);
-    }
-
-    function extendLine() {
-        var s = window.getSelection();
-        s.modify('extend', 'forward', 'lineboundary');
-    }
-
-    function moveLine() {
-        var s = window.getSelection();
-        s.modify('move', 'forward', 'lineboundary');
-    }
-/*
-    var t = document.getElementById('t');
-    t.childNodes[0].splitText(5);
-    util.splitNode(t.childNodes[1], true);
-*/
+    var l = lining(document.getElementById('demo'));
     </script>
 </div>
 </body>

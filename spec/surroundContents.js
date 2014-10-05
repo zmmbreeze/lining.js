@@ -170,7 +170,7 @@ describe('lining.js -- surroundContents', function() {
     });
 
     it('lining._adjustOrSplitNode(false):4', function () {
-        // <span>bbb<b>c|cc</b>ddd<i>hhh</i>iii</span>
+        // <span>bbb<b>|ccc</b>ddd<i>hhh</i>iii</span>
         var l = new Lining(root);
         var span = root.childNodes[1];
         var b = span.childNodes[1];
@@ -201,7 +201,7 @@ describe('lining.js -- surroundContents', function() {
         expect(l._endOffset).toBe(0);
     });
 
-    it('lining._adjustOrSplitNode(false):5', function () {
+    it('lining._adjustOrSplitNode(false):6', function () {
         // l._end === l._ancestor
         var l = new Lining(root);
         var span = root.childNodes[1];

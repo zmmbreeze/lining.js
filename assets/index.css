@@ -6,64 +6,85 @@ body {
 }
 
 .main {
-    max-width: 960px;
-    margin: 0 auto;
+    margin: 1em auto;
+    padding: 0;
+    max-width: 600px;
+    line-height: 2;
+    font-size: 24px;
 }
-
-h1 {
-    margin: 1em 0 0;
+.main h1 {
+    margin: 0;
     font-size: 4em;
-    line-height: 1;
+    line-height: 2;
     text-align: center;
     text-transform: uppercase;
 }
-
-p {
-    font-size: 1.3125em;
-    line-height: 2em;
-    margin: 1em 0;
+.main h2,
+.main h3 {
+    margin: 0;
+    font-size: 1em;
 }
-
-ol {
-    font-size: 1.3125em;
-    line-height: 2em;
+.main img {
+    float: left;
+    margin-right: 5px;
+}
+.main p {
+    margin: 0;
+}
+.main blockquote {
+    margin: 0;
 }
 
 .demo {
-    width: 40em;
-    margin: 0 auto;
 }
 
-.caret {
-    vertical-align: top;
-    display: inline-block;
-    height: 1px;
-    width: 1em;
-    background-color: red;
+
+.linenumber line {
+    position: relative;
+}
+.linenumber line:before {
+    content: attr(index);
     position: absolute;
+    right: 10px;
+    margin-right: 100%;
+    width: 1em;
+    text-align: center;
+    color: #666;
 }
-
-.line1 {
-    color: #DA4453;
+line {
+    margin: 1px 0;
+    padding: 0 10px;
+    background-color: #EFEFEF;
 }
-.line2 {
-    color: #E9573F;
+line[index="1"] {
+    color: #FFF;
+    background-color: #DA4453;
 }
-.line3 {
-    color: #F6BB42;
+line[index="2"] {
+    color: #FFF;
+    background-color: #E9573F;
 }
-.line4 {
-    color: #8CC152;
+line[index="3"] {
+    color: #FFF;
+    background-color: #F6BB42;
 }
-.line5 {
-    color: #37BC9B;
+line[index="4"] {
+    color: #FFF;
+    background-color: #8CC152;
 }
-.line6 {
-    color: #3BAFDA;
+line[index="5"] {
+    color: #FFF;
+    background-color: #37BC9B;
 }
-.line7 {
-    color: #4A89DC;
+line[index="6"] {
+    color: #FFF;
+    background-color: #3BAFDA;
 }
-.line8 {
-    color: #967ADC;
+line[index="7"] {
+    color: #FFF;
+    background-color: #4A89DC;
+}
+line[index="8"] {
+    color: #FFF;
+    background-color: #967ADC;
 }

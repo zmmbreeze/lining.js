@@ -96,4 +96,114 @@ describe('lining.js -- util', function() {
         expect(util.getNodeOffset(root.lastChild)).toBe(root.childNodes.length - 1);
         expect(util.getNodeOffset(root.childNodes[2])).toBe(2);
     });
+
+    it('util.isEmptyNode(node)', function () {
+        var span = root.childNodes[1];
+        expect(util.isEmptyNode(span)).toBe(false);
+        var b = span.childNodes[1];
+        b.innerHTML = '';
+        expect(util.isEmptyNode(b)).toBe(true);
+        span.innerHTML = '<b><i>xxx</i></b>';
+        expect(util.isEmptyNode(span)).toBe(false);
+        span.innerHTML = '<b><i></i></b>';
+        expect(util.isEmptyNode(span)).toBe(true);
+    });
+
+    describe('util.getFirstContentNode(node)', function () {
+        beforeEach(function() {
+            root.innerHTML = '<span>111</span>'
+                + '<span><b><i></i></b><b>222</b></span>'
+                + '<span><b><i>333</i></b><b></b></span>'
+                + '<span><b><i></i>444</b><b></b></span>'
+                + '<span><b><i></i></b><b></b></span>'
+                + '<span><b><i></i></b><b><i>555</i></b></span>'
+                + '<span><b><i></i></b><b><i></i></b><span>666</span></span>'
+                + '<span><b><i></i></b><b><i></i></b>777</span>';
+        });
+
+        it('1', function () {
+            expect(util.getFirstContentNode(root.childNodes[0])[0].nodeValue).toBe('111');
+        });
+
+        it('2', function () {
+            expect(util.getFirstContentNode(root.childNodes[1])[0].nodeValue).toBe('222');
+        });
+
+        it('3', function () {
+            expect(util.getFirstContentNode(root.childNodes[2])[0].nodeValue).toBe('333');
+        });
+
+        it('4', function () {
+            expect(util.getFirstContentNode(root.childNodes[3])[0].nodeValue).toBe('444');
+        });
+
+        it('5', function () {
+            expect(util.getFirstContentNode(root.childNodes[4])).toBe(null);
+        });
+
+        it('6', function () {
+            expect(util.getFirstContentNode(root.childNodes[5])[0].nodeValue).toBe('555');
+        });
+
+        it('7', function () {
+            expect(util.getFirstContentNode(root.childNodes[6])[0].nodeValue).toBe('666');
+        });
+
+        it('8', function () {
+            expect(util.getFirstContentNode(root.childNodes[7])[0].nodeValue).toBe('777');
+        });
+    });
+
+    describe('util.adjustOrSplitNode(ancestor, node, offset)', function () {
+        it('1', function () {
+            // <span>bbb<b>|ccc</b>ddd<i>hhh</i>iii</span>
+            var span = root.childNodes[1];
+            var b = span.childNodes[1];
+            var r = util.adjustOrSplitNode(root, b, 0);
+            expect(root.childNodes.length).toBe(6);
+            expect(r[0]).toBe(root);
+            expect(r[1]).toBe(2);
+            expect(span.innerHTML).toBe('bbb');
+            expect(span.nextSibling.nodeName).toBe('SPAN');
+            expect(span.nextSibling.innerHTML).toBe('<b>ccc</b>ddd<i>hhh</i>iii');
+        });
+
+        it('2', function () {
+            // <span>bbb<b>ccc</b>ddd<i>hhh</i>iii|</span>
+            var span = root.childNodes[1];
+            var r = util.adjustOrSplitNode(root, span, 5);
+            expect(root.childNodes.length).toBe(5);
+            expect(r[0]).toBe(root);
+            expect(r[1]).toBe(2);
+        });
+
+        it('3', function () {
+            // <span>|bbb<b>ccc</b>ddd<i>hhh</i>iii</span>
+            var span = root.childNodes[1];
+            var r = util.adjustOrSplitNode(root, span, 0);
+            expect(root.childNodes.length).toBe(5);
+            expect(r[0]).toBe(root);
+            expect(r[1]).toBe(1);
+        });
+
+        it('4', function () {
+            // <span>bbb<b>|ccc</b>ddd<i>hhh</i>iii</span>
+            var span = root.childNodes[1];
+            var b = span.childNodes[1];
+            var r = util.adjustOrSplitNode(root, b, 0);
+            expect(root.childNodes.length).toBe(6);
+            expect(r[0]).toBe(root);
+            expect(r[1]).toBe(2);
+            expect(span.innerHTML).toBe('bbb');
+            expect(span.nextSibling.nodeName).toBe('SPAN');
+            expect(span.nextSibling.innerHTML).toBe('<b>ccc</b>ddd<i>hhh</i>iii');
+        });
+
+        it('5', function () {
+            // node === ancestor
+            var r = util.adjustOrSplitNode(root, root, 0);
+            expect(r[0]).toBe(root);
+            expect(r[1]).toBe(0);
+        });
+    });
 });

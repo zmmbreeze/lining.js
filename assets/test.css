@@ -1,100 +1,60 @@
 body {
-    font-family: 'Quattrocento', serif;
+    font-family: "Helvetica Neue",Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei","Wenquanyi Micro Hei",sans-serif,"Apple Color Emoji";
     font-size: 16px;
     color: #666;
     line-height: 1.5;
 }
 
 .main {
+    margin: 1em auto;
+    padding: 0;
     max-width: 960px;
-    margin: 0 auto;
+    line-height: 2;
+    font-size: 24px;
 }
-
-h1 {
-    margin: 1em 0 0;
+.main h1 {
+    margin: 0;
     font-size: 4em;
-    line-height: 1;
+    line-height: 2;
     text-align: center;
     text-transform: uppercase;
 }
-
-p {
-    font-size: 1.3125em;
-    line-height: 2em;
-    margin: 1em 0;
+.main h2,
+.main h3 {
+    margin: 0;
+    font-size: 1em;
 }
-
-ol {
-    font-size: 1.3125em;
-    line-height: 2em;
+.main p {
+    margin: 0;
+}
+.main blockquote {
+    margin: 0;
 }
 
 .demo {
-    width: 40em;
-    margin: 0 auto;
+    text-indent: 1em;
+}
+.demo ul {
+    list-style: none;
 }
 
-.caret-top {
-    vertical-align: top;
-    display: inline-block;
-    height: 0;
-    width: 0;
-    background-color: red;
+line {
+    position: relative;
+    color: #666;
+    background-color: #EFEFEF;
 }
-
-.caret-bottom {
-    vertical-align: bottom;
-    display: inline-block;
-    height: 0;
-    width: 0;
-    clip: rect(0, 0, 0, 0);
-    background-color: red;
-}
-
-.caret-top-1 {
-    vertical-align: top;
-    display: inline-block;
-    height: 0;
+line:before {
+    content: attr(index);
+    position: absolute;
+    right: 10px;
+    margin-right: 100%;
     width: 1em;
-    background-color: red;
+    text-indent: 0;
+    text-align: center;
+    color: #666;
 }
-
-.caret-bottom-1 {
-    vertical-align: bottom;
-    display: inline-block;
-    height: 0;
-    width: 1em;
-    background-color: red;
-}
-
-.caret-top-3 {
-    vertical-align: top;
-    display: inline-block;
-    height: 1px;
-    width: 1em;
-    background-color: red;
-}
-
-.caret-bottom-3 {
-    vertical-align: bottom;
-    display: inline-block;
-    height: 1px;
-    width: 1em;
-    background-color: red;
-}
-
-.caret-top-5,
-.caret-top-4 {
-    vertical-align: top;
-    height: 1px;
-    width: 0;
-    background-color: red;
-}
-
-.caret-bottom-5,
-.caret-bottom-4 {
-    vertical-align: bottom;
-    height: 1px;
-    width: 0;
-    background-color: red;
+line {
+    margin: 1px 0;
+    padding: 0 10px;
+    background-color: #EFEFEF;
 }
