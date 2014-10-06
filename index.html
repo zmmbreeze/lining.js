@@ -3,24 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Lining.js</title>
-    <!-- <link href='http://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="assets/normalize.css" />
     <link rel="stylesheet" href="assets/index.css" />
+    <link rel="stylesheet" href="assets/prism.css" />
 </head>
 <body>
     <div class="main">
         <h1>Lining.js</h1>
-        <div>A javascript util let you write style for `lines`. Inspired by <a target="_blank" href="#">Lettering.js</a></div>
-        <h2>DEMO:</h2>
+        <div>Write css style for <strong>line</strong> in typography Like this:
+            <pre><code class="language-markup">&lt;div data-lining&gt;
+    First line.&lt;br/&gt;
+    Second line.&lt;br/&gt;
+    Last line.
+&lt;/div&gt;
+&lt;style&gt;
+    line { font-size:16px; }
+    line[first] { font-size:2em; font-weight: bold; }
+    line[i="2"] { font-size:1.5em; }
+&lt;/style&gt;
+&lt;script src="http://nodejs.in/lining.js/build/lining.min.js"&gt;&lt;/script&gt;
+</code></pre>
+            Inspired by <a target="_blank" href="http://letteringjs.com/">Lettering.js</a>.
+            <p class="buttons">
+            <a class="button" href="https://github.com/zmmbreeze/lining.js" target="_blank">DOWNLOAD</a>
+            <iframe src="http://ghbtns.com/github-btn.html?user=zmmbreeze&repo=lining.js&type=watch&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+            <iframe src="http://ghbtns.com/github-btn.html?user=zmmbreeze&repo=lining.js&type=fork&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+            <iframe src="http://ghbtns.com/github-btn.html?user=zmmbreeze&type=follow&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="192" height="20"></iframe>
+            </p>
+        </div>
+        <hr/>
+        <h2>DEMO</h2>
         <div id="demo" class="demo linenumber">
-            <h3>Hamlet:</h3>
-            To be or not to be that is the question. Whether it's nobler in the mind to suffer. The slings and arrows of outrageous fortune orr to take arms against a sea of troubles, And by opposing end them.
+            To be or not to be that is the question.<br/>Whether it's nobler in the mind to suffer.<br>The slings and arrows of outrageous fortune orr to take arms against a sea of troubles, And by opposing end them.
         </div>
     </div>
 
-    <script src="src/lining.js"></script>
+    <script src="assets/prism.js"></script>
+    <script src="build/lining.min.js"></script>
     <script>
-    var l = lining(document.getElementById('demo'));
+    window.onload = function () {
+        var l = lining(document.getElementById('demo'));
+    };
     </script>
 </div>
 </body>

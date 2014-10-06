@@ -9,7 +9,8 @@
     var notEmptyNodeNames = {
         'TEXTAREA': true,
         'IMG': true,
-        'INPUT': true
+        'INPUT': true,
+        'HR': true
     };
 
     var util = {
@@ -30,7 +31,7 @@
             if (styleSheet.insertRule) {
                 styleSheet.insertRule(
                     selector + '{' + rules + '}',
-                    styleSheet.cssRules.length
+                    styleSheet.cssRules ? styleSheet.cssRules.length : 0
                 );
             } else {
                 // IE
@@ -266,6 +267,46 @@
             }
 
             return [siblingIsEmpty, offset];
+        },
+        /**
+         * this browser support lining.js or not
+         * @return {boolean}
+         */
+        isSupported: function () {
+            return Selection && Selection.prototype && Selection.prototype.modify;
+        },
+        /**
+         * is node inside `line` node
+         * @param {Element} node
+         * @param {Element} root
+         * @return {boolean}
+         */
+        isInLine: function (node, root) {
+            node = node.parentNode;
+            while (root.contains(node)) {
+                if (node.nodeName === 'LINE') {
+                    return true;
+                }
+                node = node.parentNode;
+            }
+            return false;
+        },
+        /**
+         * is node inside `line` node
+         * @param {Element} root
+         * @return {Array.<Element>}
+         */
+        getAllOutSideBr: function (root) {
+            var brs = root.getElementsByTagName('br');
+            var br;
+            var outSideBrs = [];
+            for (var i = 0, l = brs.length; i < l; i++) {
+                br = brs[i];
+                if (!util.isInLine(br, root)) {
+                    outSideBrs.push(br);
+                }
+            }
+            return outSideBrs;
         }
     };
 
@@ -304,7 +345,7 @@
          * @type {number}
          * @private
          */
-        this._oldWidth;
+        this._oldWidth = -1;
 
         /**
          * @type {Document}
@@ -355,13 +396,13 @@
         /**
          * @type {number}
          */
-        this.count;
+        this.count = 0;
 
         /**
          * @type {Element}
          * @private
          */
-        this._currentLine;
+        this._currentLine = null;
 
         /**
          * inited
@@ -377,6 +418,10 @@
      * init and start
      */
     Lining.prototype.init = function() {
+        if (!util.isSupported()) {
+            return;
+        }
+
         var that = this;
         if (that._inited) {
             return;
@@ -420,12 +465,16 @@
             line.parentNode.removeChild(line);
         }
 
+        var brs = util.getAllOutSideBr(this._e);
+        while (brs.length) {
+            brs.pop().style.display = 'block';
+        }
         this._e.normalize();
     };
 
     Lining.prototype.relining = function () {
         var newWidth = this._e.offsetWidth;
-        if (this._oldWidth) {
+        if (this._oldWidth >= 0) {
             if (this._oldWidth !== newWidth) {
                 this.dispose();
             }
@@ -448,7 +497,17 @@
 
             this._createLine(s);
         }
+
+        if (this._currentLine) {
+            this._currentLine.setAttribute('last', '');
+            this._adjustLine(this._currentLine, s);
+        }
+
         s.removeAllRanges();
+        var brs = util.getAllOutSideBr(this._e);
+        while (brs.length) {
+            brs.pop().style.display = 'none';
+        }
     };
 
     /**
@@ -618,9 +677,9 @@
             this._adjustTextBoundary();
             // append rest of nodes after line
             // split node
-            var r = util.adjustOrSplitNode(line, this._end, this._endOffset);
-            this._end = r[0];
-            this._endOffset = r[1];
+            var tmp = util.adjustOrSplitNode(line, this._end, this._endOffset);
+            this._end = tmp[0];
+            this._endOffset = tmp[1];
         }
 
         // append rest of nodes after line
@@ -646,6 +705,9 @@
             this.surroundContents(line);
         }
 
+        if (!this._currentLine) {
+            line.setAttribute('first', '');
+        }
         this._currentLine = line;
         if (!line.previousSibling
             || util.findContentSibling(line, 'backward')[0]) {
@@ -774,7 +836,7 @@
         var elements = doc.querySelectorAll('[data-lining]');
         var e;
         for (var i = 0, l = elements.length; i < l; i++) {
-            e = elements[i]
+            e = elements[i];
             lining(e);
         }
     }, false);

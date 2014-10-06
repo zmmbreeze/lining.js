@@ -6,11 +6,15 @@ body {
 }
 
 .main {
-    margin: 1em auto;
+    margin: 1em auto 3em;
     padding: 0;
     max-width: 600px;
     line-height: 2;
     font-size: 24px;
+}
+.main strong {
+    text-transform: uppercase;
+    border-bottom: 1px solid #999;
 }
 .main h1 {
     margin: 0;
@@ -19,10 +23,14 @@ body {
     text-align: center;
     text-transform: uppercase;
 }
-.main h2,
-.main h3 {
-    margin: 0;
-    font-size: 1em;
+.main h2 {
+    margin: 1em 0 0 0;
+    font-size: 1.5em;
+    text-align: center;
+}
+.main pre {
+    margin: 0 !important;
+    font-size: 14px;
 }
 .main img {
     float: left;
@@ -34,10 +42,59 @@ body {
 .main blockquote {
     margin: 0;
 }
-
-.demo {
+.main a {
+    text-decoration: none;
+}
+.main a:hover {
+    text-decoration: underline;
 }
 
+.main .buttons {
+    margin: 1em;
+    text-align: center;
+}
+.main .button {
+    display: block;
+    margin: 1em auto;
+    padding: 5px 20px;
+    width: 150px;
+    text-align: center;
+    font-family: Helvetica, Arial, Sans-Serif;
+    color: #FFF;
+    background-color: #5D9CEC;
+    box-shadow:
+        1px 0px 1px #4A89DC,
+        2px 1px 1px #4A89DC,
+        3px 2px 1px #4A89DC,
+        4px 3px 1px #4A89DC,
+        0px 1px 1px #4A89DC,
+        1px 2px 1px #4A89DC,
+        2px 3px 1px #4A89DC,
+        3px 4px 1px #4A89DC;
+}
+.main .button:hover {
+    text-decoration: none;
+    background-color: #4A89DC;
+}
+.main .button:active {
+    position: relative;
+    top: 2px;
+    left: 2px;
+    box-shadow:
+        1px 0px 1px #4A89DC,
+        2px 1px 1px #4A89DC,
+        0px 1px 1px #4A89DC,
+        1px 2px 1px #4A89DC;
+}
+.main hr {
+    background: none;
+    border: none;
+    border-bottom: 5px dashed #CCC;
+}
+
+.demo {
+    font-size: 16px;
+}
 
 .linenumber line {
     position: relative;
@@ -56,35 +113,15 @@ line {
     padding: 0 10px;
     background-color: #EFEFEF;
 }
-line[index="1"] {
-    color: #FFF;
-    background-color: #DA4453;
+line[first] {
+    font-size: 34px;
 }
 line[index="2"] {
-    color: #FFF;
-    background-color: #E9573F;
+    font-size: 28px;
 }
 line[index="3"] {
-    color: #FFF;
-    background-color: #F6BB42;
+    font-size: 22px;
 }
 line[index="4"] {
-    color: #FFF;
-    background-color: #8CC152;
-}
-line[index="5"] {
-    color: #FFF;
-    background-color: #37BC9B;
-}
-line[index="6"] {
-    color: #FFF;
-    background-color: #3BAFDA;
-}
-line[index="7"] {
-    color: #FFF;
-    background-color: #4A89DC;
-}
-line[index="8"] {
-    color: #FFF;
-    background-color: #967ADC;
+    font-size: 18px;
 }
