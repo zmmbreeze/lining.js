@@ -3,52 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Lining.js</title>
-    <link href='http://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Calligraffitti|Quattrocento:400,700|Dancing+Script|Handlee|Cookie' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="assets/normalize.css" />
     <link rel="stylesheet" href="assets/index.css" />
     <link rel="stylesheet" href="assets/prism.css" />
 </head>
 <body>
-    <div class="main">
+<div class="main">
+    <div class="center">
         <h1>Lining.js</h1>
         <div>Write css style for <strong>line</strong> in typography Like this:
-            <pre><code class="language-markup">&lt;div data-lining&gt;
-    First line.&lt;br/&gt;
-    Second line.&lt;br/&gt;
-    Last line.
+        </div>
+        <a href="#demo-1" class="tip">DEMO</a>
+    </div>
+</div>
+
+<div class="demo demo-1" id="demo-1">
+    <div class="center">
+        <div class="v-center">
+            <div class="flipper">
+            <div class="poem front" data-lining>
+              As soon as wolf began to feel that he would like a decent meal, He went and knocked on Grandma's door.<br/> When Grandma opened it, she saw<br/> The sharp white teeth, the horrid grin,<br/> And Wolfie said, 'May I come in?'<br/> Poor Grandmamma was terrified,<br/> 'He's going to eat me up!' she cried.
+            </div>
+            <pre class="back"><code class="language-markup">&lt;div class="poem" data-lining&gt;
+    Some text...
 &lt;/div&gt;
 &lt;style&gt;
-    line { font-size:16px; }
-    line[first] { font-size:2em; font-weight: bold; }
-    line[i="2"] { font-size:1.5em; }
+    .poem {
+        line-height: 40px;
+        font-size: 32px;
+        font-family: 'Dancing Script' serif;
+    }
+    .poem line:nth-of-type(-n+2) {
+        font-size: 42px;
+        color: #DA4453;
+    }
 &lt;/style&gt;
-&lt;script src="http://nodejs.in/lining.js/build/lining.min.js"&gt;&lt;/script&gt;
+&lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
 </code></pre>
-            Inspired by <a target="_blank" href="http://letteringjs.com/">Lettering.js</a>.
-            <p class="buttons">
-            <a class="button" href="https://github.com/zmmbreeze/lining.js" target="_blank">DOWNLOAD</a>
-            <iframe src="http://ghbtns.com/github-btn.html?user=zmmbreeze&repo=lining.js&type=watch&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
-            <iframe src="http://ghbtns.com/github-btn.html?user=zmmbreeze&repo=lining.js&type=fork&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
-            <iframe src="http://ghbtns.com/github-btn.html?user=zmmbreeze&type=follow&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="192" height="20"></iframe>
-            </p>
+            </div>
+            <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
         </div>
-        <hr/>
-        <h2>DEMO</h2>
-        <div id="demo" class="demo linenumber">
+        <a href="#demo-2" class="tip">NEXT</a>
+    </div>
+</div>
+
+    <div class="center">
+        <div data-lining class="linenumber">
             To be or not to be that is the question.<br/>Whether it's nobler in the mind to suffer.<br>The slings and arrows of outrageous fortune orr to take arms against a sea of troubles, And by opposing end them.
         </div>
     </div>
 
-    <script src="assets/prism.js"></script>
-    <script src="build/lining.min.js"></script>
-    <script>
-    window.onload = function () {
-        var l = lining(document.getElementById('demo'));
-    };
-    </script>
+<script src="assets/prism.js"></script>
+<script src="build/lining.min.js"></script>
+<script>
+var actions = {
+    'toggle': function (target) {
+        var status = target.getAttribute('data-status');
+        var parent = target.parentNode;
+        if (status === '1') {
+            // show preview
+            parent.removeAttribute('show-code');
+            target.setAttribute('data-status', '0');
+            target.innerHTML = 'SHOW CODE';
+        }
+        else {
+            // show code
+            parent.setAttribute('show-code', '');
+            target.setAttribute('data-status', '1');
+            target.innerHTML = 'PREVIEW';
+        }
+    }
+};
+document.body.addEventListener('click', function (e) {
+    var target = e.target;
+    var actionName = target.getAttribute('data-do');
+    if (target.nodeName !== 'A' || !actionName) {
+        return;
+    }
+
+    e.preventDefault();
+    actions[actionName](target);
+}, false);
+</script>
 </div>
 </body>
 </html>
