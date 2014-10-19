@@ -10,8 +10,11 @@ body {
     overflow-y: auto;
     line-height: 2;
     font-size: 24px;
-    font-family: 'Quattrocento', serif;
+    font-family: 'Lora', serif;
     color: #666;
+}
+code {
+    font-family: 'Inconsolata', monospace;
 }
 
 .center {
@@ -27,34 +30,32 @@ body {
 
 .main {
     height: 100%;
+    line-height: 1.5;
     overflow-y: hidden;
+    font-size: 18px;
+    color: #222;
+    background-color: #FFF;
 }
 .main strong {
     text-transform: uppercase;
 }
 .main h1 {
     margin: 0;
-    color: #999;
+    color: #222;
     font-size: 4em;
-    line-height: 2;
     text-align: center;
     text-transform: uppercase;
     text-shadow: #666 -1px 3px 0;
-}
-.main h2 {
-    margin: 1em 0 0 0;
-    font-size: 1.5em;
-    text-align: center;
-}
-.main img {
-    float: left;
-    margin-right: 5px;
+    font-family: 'Allerta Stencil', sans-serif;
 }
 .main p {
-    margin: 0;
+    margin: 1em 0;
 }
 .main blockquote {
     margin: 0;
+}
+.main img {
+    vertical-align: middle;
 }
 .main a {
     text-decoration: none;
@@ -62,11 +63,15 @@ body {
 .main a:hover {
     text-decoration: underline;
 }
+.main pre {
+    margin: 0;
+    font-size: 14px;
+}
 
 /* tip */
 .tip {
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
     left: 50%;
     margin-left: -50px;
     width: 100px;
@@ -80,19 +85,19 @@ body {
 .tip::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -20px;
     left: 50%;
-    margin-left: -5px;
+    margin-left: -10px;
     width: 0;
     height: 0;
     overflow: hidden;
     font-size: 0;
-    border-top: 5px solid #ED5565;
-    border-bottom: 5px dotted transparent;
-    border-right: 5px dotted transparent;
-    border-left: 5px dotted transparent;
+    border-top: 10px solid #ED5565;
+    border-bottom: 10px dotted transparent;
+    border-right: 10px dotted transparent;
+    border-left: 10px dotted transparent;
 }
-.tip:hover {
+a.tip:hover {
     text-decoration: none;
     background-color: #DA4453;
 }
@@ -102,7 +107,10 @@ body {
 
 /* switcher */
 .switcher {
-    margin: 1em auto 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 0 0 -100px ;
     display: block;
     width: 200px;
     height: 40px;
@@ -118,46 +126,37 @@ body {
 
 /* flip css animation: http://davidwalsh.name/css-flip */
 .v-center {
-    perspective: 1000;
-    transform-style: preserve-3d;
-}
-.v-center[show-code] .back {
-    transform: rotateY(0deg);
-}
-.v-center[show-code] .front {
-    transform: rotateY(180deg);
-}
-.flipper,
-.front,
-.back {
-    margin: 0 !important;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-}
-.flipper {
-    transition: 0.6s;
-    transform-style: preserve-3d;
-
     position: relative;
+    top: 50%;
+    overflow: hidden;
+    transform: translateY(-50%);
 }
-.front,
-.back {
-    backface-visibility: hidden;
-    transition: 0.6s;
-    transform-style: preserve-3d;
-
+.v-center[show-code] .preview {
+    transform: translateX(-100%);
+}
+.v-center[show-code] .code {
+    transform: translateX(0);
+}
+.v-center .preview,
+.v-center .code {
     position: absolute;
     top: 0;
     left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(0);
+    transition: .5s ease-in transform;
 }
-.front {
-    z-index: 2;
-    transform: rotateY(0deg);
+.v-center .code {
+    overflow: auto;
+    box-sizing: border-box;
+    transform: translateX(100%);
 }
-.back {
-    transform: rotateY(-180deg);
+.v-center .code pre {
+    margin: 0 !important;
 }
+
 
 
 /* demos */
@@ -169,8 +168,8 @@ body {
 .demo .center {
     position: relative;
 }
-.v-center {
-    transform: translateY(50%);
+.demo pre {
+    font-size: 14px;
 }
 
 /* demo-1 poem */
@@ -180,20 +179,80 @@ body {
 .demo-1 .v-center {
     height: 350px;
 }
+.demo-1 .switcher {
+    margin-top: 200px;
+}
 .poem {
     line-height: 40px;
     font-size: 32px;
-    font-family: 'Dancing Script' serif;
+    font-family: 'Dancing Script', serif;
 }
 .poem line:nth-of-type(-n+2) {
     font-size: 42px;
     color: #DA4453;
 }
 
+/* demo-2 fadeout */
+.demo-2 {
+    background-color: #F6BB42;
+}
+.demo-2 .v-center {
+    height: 350px;
+}
+.demo-2 .switcher {
+    margin-top: 190px;
+}
+.fadeout {
+    font-size: 36px;
+    line-height: 36px;
+    color: hsla(354, 67%, 46%, 1);
+    font-family: 'Handlee', serif;
+}
+.fadeout line:nth-last-of-type(3) {
+   color: hsla(354, 67%, 55%, 1);
+   font-size: 80%;
+}
+.fadeout line:nth-last-of-type(2) {
+   color: hsla(354, 67%, 60%, 1);
+   font-size: 70%;
+}
+.fadeout line:nth-last-of-type(1) {
+   color: hsla(354, 67%, 65%, 1);
+   font-size: 60%
+}
 
 
+
+/* demo-3 linenumber */
+.demo-3 {
+    background-color: #2f3c45;
+}
+.demo-3 .v-center {
+    height: 320px;
+}
+.demo-3 .switcher {
+    margin-top: 180px;
+}
+.linenumber {
+    color: #f4f1de;
+    line-height: 24px;
+    font-size: 16px;
+}
+.linenumber h3 {
+    line-height: 24px;
+    font-size: 20px;
+}
+.linenumber p {
+    margin: 24px 0 0;
+}
+.linenumber p a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid #f4f1de;
+}
 .linenumber line {
     position: relative;
+    margin-left: 32px; /* 16 * 2*/
 }
 .linenumber line:before {
     content: attr(index) '.';
@@ -201,6 +260,14 @@ body {
     right: 10px;
     margin-right: 100%;
     width: 1em;
+    font-size: 16px;
     text-align: center;
-    color: #666;
+    color: #999;
+}
+
+
+/* download */
+.download .tip {
+    margin-left: -100px;
+    width: 200px;
 }

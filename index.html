@@ -3,17 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Lining.js</title>
-    <link href='http://fonts.googleapis.com/css?family=Calligraffitti|Quattrocento:400,700|Dancing+Script|Handlee|Cookie' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Lora|Calligraffitti|Inconsolata|Dancing+Script|Handlee|Allerta+Stencil' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/normalize.css" />
     <link rel="stylesheet" href="assets/index.css" />
     <link rel="stylesheet" href="assets/prism.css" />
 </head>
 <body>
+    <a href="https://github.com/zmmbreeze/lining.js" target="_blank"><img style="position:absolute;top:0;right:0;z-index:999;border:0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 <div class="main">
     <div class="center">
         <h1>Lining.js</h1>
-        <div>Write css style for <strong>line</strong> in typography Like this:
-        </div>
+        <p>In CSS we already have the selector <code>::first-line</code> to apply style on the first line of one element. But there is no selector like <code>::nth-line()</code>, <code>::nth-last-line()</code> or even <code>::last-line</code>. Then I read an article <a href="http://css-tricks.com/a-call-for-nth-everything/" target="_blank">A Call for ::nth-everything</a> from CSS tricks. <code>::nth-line()</code> is actually really useful in some situation.</p>
+        <p>There comes <strong>Lining.js</strong>. It is built for this situation!</p>
+        <pre><code class="language-markup">&lt;div class="poem" data-lining&gt;Some text...&lt;/div&gt;
+&lt;style&gt;
+.poem line[first] { /* `.poem::first-line`*/ }
+.poem line[last] { /* `.poem::last-line` */ }
+.poem line[index="5"] { /* `.poem::nth-line(5)` */ }
+.poem line:nth-of-type(-n+2) { /* `.poem::nth-line(-n+2)` */ }
+.poem line:nth-last-of-type(2n) { /* `.poem:::nth-last-line(2n)` */ }
+&lt;/style&gt;
+&lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
+</code></pre>
+        <p>Supported browsers 
+            <img src="assets/chrome_256x256.png" width="24" height="24" alt="Lastest chrome">
+            <img src="assets/firefox_256x256.png" width="24" height="24" alt="Lastest firefox">
+            <img src="assets/safari_256x256.png" width="24" height="24" alt="Lastest safari">
+            <img src="assets/opera_256x256.png" width="24" height="24" alt="Lastest opera">
+        </p>
         <a href="#demo-1" class="tip">DEMO</a>
     </div>
 </div>
@@ -21,38 +38,96 @@
 <div class="demo demo-1" id="demo-1">
     <div class="center">
         <div class="v-center">
-            <div class="flipper">
-            <div class="poem front" data-lining>
-              As soon as wolf began to feel that he would like a decent meal, He went and knocked on Grandma's door.<br/> When Grandma opened it, she saw<br/> The sharp white teeth, the horrid grin,<br/> And Wolfie said, 'May I come in?'<br/> Poor Grandmamma was terrified,<br/> 'He's going to eat me up!' she cried.
+            <div data-lining class="poem preview">
+                As soon as wolf began to feel that he would like a decent meal, He went and knocked on Grandma's door.<br/> When Grandma opened it, she saw<br/> The sharp white teeth, the horrid grin,<br/> And Wolfie said, 'May I come in?'<br/> Poor Grandmamma was terrified,<br/> 'He's going to eat me up!' she cried.
             </div>
-            <pre class="back"><code class="language-markup">&lt;div class="poem" data-lining&gt;
-    Some text...
-&lt;/div&gt;
-&lt;style&gt;
-    .poem {
-        line-height: 40px;
-        font-size: 32px;
-        font-family: 'Dancing Script' serif;
-    }
-    .poem line:nth-of-type(-n+2) {
-        font-size: 42px;
-        color: #DA4453;
-    }
-&lt;/style&gt;
-&lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
-</code></pre>
+            <div class="code">
+                <pre><code class="language-css">.poem {
+    line-height: 40px;
+    font-size: 32px;
+    font-family: 'Dancing Script' serif;
+}
+.poem line:nth-of-type(-n+2) {
+    font-size: 42px;
+    color: #DA4453;
+}</code></pre>
             </div>
-            <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
         </div>
+        <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
         <a href="#demo-2" class="tip">NEXT</a>
     </div>
 </div>
 
+<div class="demo demo-2" id="demo-2">
     <div class="center">
-        <div data-lining class="linenumber">
-            To be or not to be that is the question.<br/>Whether it's nobler in the mind to suffer.<br>The slings and arrows of outrageous fortune orr to take arms against a sea of troubles, And by opposing end them.
+        <div class="v-center">
+            <div data-lining class="fadeout preview">
+                If you want to view paradise<br/>
+                Simply look around and view it<br/>
+                Anything you want to, do it<br/>
+                Want to change the world,<br/>
+                there's nothing to it<br/>
+                There is no life I know<br/>
+                To compare with<br/>
+                pure imagination
+            </div>
+            <div class="code">
+                <pre><code class="language-css">.fadeout {
+    font-size: 36px;
+    line-height: 36px;
+    color: hsla(354, 67%, 46%, 1);
+    font-family: 'Handlee' serif;
+}
+.fadeout line:nth-last-of-type(3) {
+   color: hsla(354, 67%, 55%, 1);
+   font-size: 80%;
+}
+.fadeout line:nth-last-of-type(2) {
+   color: hsla(354, 67%, 60%, 1);
+   font-size: 70%;
+}
+.fadeout line:nth-last-of-type(1) {
+   color: hsla(354, 67%, 65%, 1);
+   font-size: 60%
+}</code></pre>
+            </div>
         </div>
+        <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
+        <a href="#demo-3" class="tip">NEXT</a>
     </div>
+</div>
+
+<div class="demo demo-3" id="demo-3">
+    <div class="center">
+        <div class="v-center">
+            <div data-lining class="linenumber preview">
+            <h3>What is typography</h3>
+            <p>Typography (from the Greek words τύπος typos "form" and γράφειν graphein "to write") is the art and technique of arranging type to make written language most appealing to learning and recognition. The arrangement of type involves selecting typefaces, point size, line length, line-spacing (leading), letter-spacing (tracking), and adjusting the space within letters pairs (kerning[2]). Type design is a closely related craft, sometimes considered part of typography; most typographers do not design typefaces, and some type designers do not consider themselves typographers. In modern times, typography has been put in film, television and online broadcasts to add emotion to communication.<br/>
+            From <a href="http://en.wikipedia.org/wiki/Typography" target="_blank">Wikipedia</a>.</P>
+            </div>
+            <div class="code">
+                <pre><code class="language-css">.linenumber line {
+    position: relative;
+    margin-left: 32px; /* 16 * 2*/
+}
+.linenumber line:before {
+    content: attr(index) '.';
+    position: absolute;
+    right: 10px;
+    margin-right: 100%;
+    width: 1em;
+    font-size: 16px;
+    text-align: center;
+    color: #999;
+}</code></pre>
+            </div>
+        </div>
+        <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
+        <a href="#download" class="tip">NEXT</a>
+    </div>
+</div>
+
+To be or not to be that is the question.<br/>Whether it's nobler in the mind to suffer.<br>The slings and arrows of outrageous fortune orr to take arms against a sea of troubles, And by opposing end them.
 
 <script src="assets/prism.js"></script>
 <script src="build/lining.min.js"></script>
@@ -60,16 +135,16 @@
 var actions = {
     'toggle': function (target) {
         var status = target.getAttribute('data-status');
-        var parent = target.parentNode;
+        var prev = target.previousElementSibling;
         if (status === '1') {
             // show preview
-            parent.removeAttribute('show-code');
+            prev.removeAttribute('show-code');
             target.setAttribute('data-status', '0');
             target.innerHTML = 'SHOW CODE';
         }
         else {
             // show code
-            parent.setAttribute('show-code', '');
+            prev.setAttribute('show-code', '');
             target.setAttribute('data-status', '1');
             target.innerHTML = 'PREVIEW';
         }
