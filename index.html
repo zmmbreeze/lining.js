@@ -31,7 +31,7 @@
             <img src="assets/safari_256x256.png" width="24" height="24" alt="Lastest safari">
             <img src="assets/opera_256x256.png" width="24" height="24" alt="Lastest opera">
         </p>
-        <a href="#demo-1" class="tip">DEMO</a>
+        <a href="#demo-1" class="tip" data-do="tip">DEMO</a>
     </div>
 </div>
 
@@ -54,7 +54,7 @@
             </div>
         </div>
         <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
-        <a href="#demo-2" class="tip">NEXT</a>
+        <a href="#demo-2" class="tip" data-do="tip">NEXT</a>
     </div>
 </div>
 
@@ -93,7 +93,7 @@
             </div>
         </div>
         <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
-        <a href="#demo-3" class="tip">NEXT</a>
+        <a href="#demo-3" class="tip" data-do="tip">NEXT</a>
     </div>
 </div>
 
@@ -123,7 +123,7 @@
             </div>
         </div>
         <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
-        <a href="#download" class="tip">NEXT</a>
+        <a href="#download" class="tip" data-do="tip">NEXT</a>
     </div>
 </div>
 
@@ -147,6 +147,17 @@ var actions = {
             prev.setAttribute('show-code', '');
             target.setAttribute('data-status', '1');
             target.innerHTML = 'PREVIEW';
+        }
+    },
+    'tip': function (target) {
+        var dest = target.href.match(/#([\w\W]+)/);
+        if (!dest) {
+            return;
+        }
+        dest = dest[1];
+        dest = document.getElementById(dest);
+        if (dest.scrollIntoView) {
+            dest.scrollIntoView();
         }
     }
 };
