@@ -15,28 +15,22 @@
 
     var util = {
         /**
-         * add CSS rule at last.
+         * Insert css text.
          *
-         * @param {string} selector '.foo'.
-         * @param {string} rules 'color:red;background:blue;'.
+         * @param {string} css css style text.
          */
-        addCSSRule: function(selector, rules) {
-            if (!styleSheet) {
-                var style = doc.createElement('style');
-                style.type = 'text/css';
-                doc.getElementsByTagName('head')[0].appendChild(style);
-                styleSheet = doc.styleSheets[0];
+        createStyle: function (css) {
+            var style = doc.createElement('style');
+            style.type = 'text/css';
+
+            if (style.styleSheet) {
+                // IE
+                style.styleSheet.cssText = css;
+            } else {
+                style.appendChild(doc.createTextNode(css));
             }
 
-            if (styleSheet.insertRule) {
-                styleSheet.insertRule(
-                    selector + '{' + rules + '}',
-                    styleSheet.cssRules ? styleSheet.cssRules.length : 0
-                );
-            } else {
-                // IE
-                styleSheet.addRule(selector, rules, -1);
-            }
+            doc.getElementsByTagName('head')[0].appendChild(style);
         },
         /**
          * Init this plugin at the first time.
@@ -48,16 +42,15 @@
             initStyle.inited = true;
 
             // init style
-            util.addCSSRule(
-                'line',
+            util.createStyle(
                 ''
-                + 'display:block;'
-                + 'text-indent:0;'
-            );
-            util.addCSSRule(
-                'line[first-in-element]:first-child',
-                ''
-                + 'text-indent:inherit;'
+                + 'line {'
+                +     'display:block;'
+                +     'text-indent:0;'
+                + '}'
+                + 'line[first-in-element]:first-child {'
+                +     'text-indent:inherit;'
+                + '}'
             );
         },
         /**
