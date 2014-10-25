@@ -334,7 +334,9 @@
          * @type {boolean}
          * @private
          */
-        this._autoResize = opt['autoResize'] == null ? true : opt['autoResize'];
+        this._autoResize = opt['autoResize'] == null
+            ? element.hasAttribute('data-auto-resize')
+            : opt['autoResize'];
 
         /**
          * from line number
