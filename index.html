@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lining.js</title>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Calligraffitti|Inconsolata|Dancing+Script|Handlee|Allerta+Stencil' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Roboto+Slab|Calligraffitti|Inconsolata|Dancing+Script|Handlee|Allerta+Stencil' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/normalize.css" />
     <link rel="stylesheet" href="assets/index.css" />
     <link rel="stylesheet" href="assets/prism.css" />
@@ -13,7 +13,7 @@
 
 <a href="https://github.com/zmmbreeze/lining.js" target="_blank"><img style="position:absolute;top:0;right:0;z-index:999;border:0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 <div class="main">
-    <div class="center">
+    <div class="center" id="intro" data-lining>
         <h1>Lining.js</h1>
         <p>In CSS we already have the selector <code>::first-line</code> to apply style on the first line of one element. But there is no selector like <code>::nth-line()</code>, <code>::nth-last-line()</code> or even <code>::last-line</code>. Then I read an article <a href="http://css-tricks.com/a-call-for-nth-everything/" target="_blank">A Call for ::nth-everything</a> from CSS tricks. <code>::nth-line()</code> is actually really useful in some situation.</p>
         <p>There comes <strong>Lining.js</strong>. It is built for this situation!</p>
@@ -134,8 +134,12 @@ To be or not to be that is the question.<br/>Whether it's nobler in the mind to 
 </div>
 
 <script src="assets/prism.js"></script>
+<script>window.Selection = null;</script>
 <script src="build/lining.min.js"></script>
 <script>
+// -------------------------
+// actions
+// -------------------------
 var actions = {
     'toggle': function (target) {
         var status = target.getAttribute('data-status');
@@ -175,6 +179,24 @@ document.body.addEventListener('click', function (e) {
     e.preventDefault();
     actions[actionName](target);
 }, false);
+
+// -------------------------
+// main page effect
+// -------------------------
+document.getElementById('intro').addEventListener('afterlining', function (e) {
+    var target = e.target;
+    var lines = Array.prototype.slice.call(target.getElementsByTagName('line'), 0);
+    (function animate() {
+        if (!lines.length) {
+            return;
+        }
+
+        setTimeout(function () {
+            lines.shift().style.opacity = 1;
+            animate();
+        }, 250);
+    })();
+});
 </script>
 </div>
 </body>

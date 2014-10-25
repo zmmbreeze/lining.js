@@ -72,6 +72,20 @@ code {
     margin: 0;
     font-size: 14px;
 }
+/* main line style */
+#intro {
+    opacity: 0;
+}
+#intro[data-lining="end"],
+.nolining #intro {
+    /* reset for unsupported browser */
+    opacity: 1;
+}
+#intro line {
+    opacity: 0;
+    transition: 1s opacity;
+}
+
 
 /* tip */
 .tip {

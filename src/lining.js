@@ -70,6 +70,9 @@
                 +     'display:block;'
                 +     'text-indent:0;'
                 + '}'
+                + 'pre line {'
+                +     'display:inline;'
+                + '}'
                 + 'line[first-in-element]:first-child {'
                 +     'text-indent:inherit;'
                 + '}'
@@ -281,8 +284,15 @@
          * @return {boolean}
          */
         isSupported: function () {
+            if (util.isSupported.re != null) {
+                return util.isSupported.re;
+            }
+
             var Selection = win['Selection'];
-            return Selection && Selection.prototype && Selection.prototype.modify;
+            var result = !!(Selection && Selection.prototype && Selection.prototype.modify);
+            doc.documentElement.className += ' nolining';
+            util.isSupported.re = result;
+            return result;
         },
         /**
          * is node inside `line` node
@@ -447,7 +457,6 @@
         that._inited = true;
 
         if (!util.isSupported()) {
-            doc.documentElement.setAttribute('nolining', '');
             return;
         }
 
@@ -503,7 +512,7 @@
             brs.pop().style.display = 'block';
         }
         this._e.normalize();
-        this._e.removeAttribute('lining');
+        this._e.setAttribute('data-lining', '');
 
         util.fireEvent(this._e, 'afterliningdisposed', false);
     };
@@ -548,7 +557,7 @@
             brs.pop().style.display = 'none';
         }
 
-        this._e.setAttribute('lining', '');
+        this._e.setAttribute('data-lining', 'end');
         util.fireEvent(this._e, 'afterlining', false);
     };
 
