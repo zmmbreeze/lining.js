@@ -1,5 +1,14 @@
-(function(win, doc) {
-    var styleSheet;
+/**
+ * lining.js
+ * Write css style for `line` in typography.
+ * https://github.com/zmmbreeze/lining.
+ *
+ * @author zmmbreeze / @zhoumm
+ */
+
+/* jshint sub:true, camelcase:false */
+
+(function (win, doc) {
     var emptyNodeNames = {
         'STYLE': true,
         'SCRIPT': true,
@@ -15,6 +24,18 @@
 
     var util = {
         /**
+         * fire event
+         * @param {Element} element
+         * @param {string} type
+         * @param {boolean} cancelable
+         * @return {boolean} cancelled or not
+         */
+        fireEvent: function (element, type, cancelable) {
+            var event = doc.createEvent('Event');
+            event.initEvent(type, true, cancelable);
+            return element.dispatchEvent(event);
+        },
+        /**
          * Insert css text.
          *
          * @param {string} css css style text.
@@ -26,7 +47,8 @@
             if (style.styleSheet) {
                 // IE
                 style.styleSheet.cssText = css;
-            } else {
+            }
+            else {
                 style.appendChild(doc.createTextNode(css));
             }
 
@@ -115,19 +137,12 @@
         /**
          * get node's offset
          * @param {Element} node
-         * @param {boolean} ignoreTextNode;
          * @return {number} offset
          */
         getNodeOffset: function (node, ignoreTextNode) {
             var prev = node;
             var i = 0;
             while (prev = prev.previousSibling) {
-                if (ignoreTextNode && prev.nodeType == 3) {
-                    if (prev.nodeType != prev.nextSibling.nodeType ){
-                        i++;
-                    }
-                    continue;
-                }
                 i++;
             }
             return i;
@@ -266,6 +281,7 @@
          * @return {boolean}
          */
         isSupported: function () {
+            var Selection = win['Selection'];
             return Selection && Selection.prototype && Selection.prototype.modify;
         },
         /**
@@ -310,10 +326,18 @@
      * @param {Element} element
      * @param {Object=} opt_option
      */
-    var Lining = function(element, opt_option) {
+    var Lining = function (element, opt_option) {
         var opt = opt_option || {};
 
         /**
+         * if auto resize when window resize trigger.
+         * @type {boolean}
+         * @private
+         */
+        this._autoResize = opt['autoResize'] == null ? true : opt['autoResize'];
+
+        /**
+         * from line number
          * @type {number}
          */
         this.from = (opt['from'] - 1)
@@ -322,6 +346,7 @@
         this.from = Math.max(this.from, 0);
 
         /**
+         * end line number
          * @type {number}
          */
         this.to = opt['to']
@@ -329,6 +354,7 @@
             || null;
 
         /**
+         * element
          * @type {Element}
          * @private
          */
@@ -387,6 +413,7 @@
         this._collapsed = false;
 
         /**
+         * line count
          * @type {number}
          */
         this.count = 0;
@@ -410,7 +437,7 @@
     /**
      * init and start
      */
-    Lining.prototype.init = function() {
+    Lining.prototype.init = function () {
         var that = this;
         if (that._inited) {
             return;
@@ -426,6 +453,11 @@
         that.win = that.doc.defaultView;
         that.relining();
 
+        if (!this._autoResize) {
+            return that;
+        }
+
+        // setup auto resize when window resized.
         var timeout;
         that.win.addEventListener('resize', function () {
             if (timeout) {
@@ -441,7 +473,12 @@
         return that;
     };
 
+    /**
+     * remove all line tags
+     */
     Lining.prototype.dispose = function () {
+        util.fireEvent(this._e, 'beforeliningdisposed', false);
+
         var lines = this._e.getElementsByTagName('line');
         var line;
         var removed;
@@ -464,21 +501,27 @@
             brs.pop().style.display = 'block';
         }
         this._e.normalize();
+        this._e.removeAttribute('lining');
+
+        util.fireEvent(this._e, 'afterliningdisposed', false);
     };
 
+    /**
+     * Remove all line tags if needed,
+     * and create new line tags.
+     */
     Lining.prototype.relining = function () {
         var newWidth = this._e.offsetWidth;
-        if (this._oldWidth >= 0) {
-            if (this._oldWidth !== newWidth) {
-                this.dispose();
-            }
-            else {
-                return;
-            }
+        var hasOldWidth = this._oldWidth >= 0;
+        var widthChanged = this._oldWidth !== newWidth;
+        if ((hasOldWidth && !widthChanged) || !util.fireEvent(this._e, 'beforelining', true)) {
+            return;
         }
-        else {
-            this._e.normalize();
+
+        if (hasOldWidth && widthChanged) {
+            this.dispose();
         }
+
         this._currentLine = null;
         this._oldWidth = newWidth;
         this.count = this.from;
@@ -502,6 +545,9 @@
         while (brs.length) {
             brs.pop().style.display = 'none';
         }
+
+        this._e.setAttribute('lining', '');
+        util.fireEvent(this._e, 'afterlining', false);
     };
 
     /**
@@ -571,7 +617,7 @@
     /**
      * get the next line's start point.
      * @param {Element} end endContainer or end node
-     * @param {number} endoffset endOffset
+     * @param {number} endOffset endOffset
      * @return {Array} [start, startOffset]
      */
     Lining.prototype._getNextLineStartPoint = function (end, endOffset) {
@@ -659,7 +705,7 @@
      * @param {Element} line
      * @param {Selection} s
      */
-    Lining.prototype._adjustLine = function(line, s) {
+    Lining.prototype._adjustLine = function (line, s) {
         var r = this._setCursor(line, 0, s);
         s.modify('extend', 'forward', 'character');
         s.modify('extend', 'forward', 'lineboundary');
@@ -689,7 +735,7 @@
      * create line.
      * @param {Selection} s
      */
-    Lining.prototype._createLine = function(s) {
+    Lining.prototype._createLine = function (s) {
         var line = doc.createElement('line');
         line.setAttribute('index', ++this.count);
         try {
@@ -758,8 +804,6 @@
         var commonAncestor = this._ancestor;
         var node;
         var offset;
-        var parent;
-        var tmpOffset;
 
         if (isStart) {
             node = this._start;
