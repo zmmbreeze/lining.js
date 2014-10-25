@@ -418,15 +418,16 @@
      * init and start
      */
     Lining.prototype.init = function() {
-        if (!util.isSupported()) {
-            return;
-        }
-
         var that = this;
         if (that._inited) {
             return;
         }
         that._inited = true;
+
+        if (!util.isSupported()) {
+            doc.documentElement.setAttribute('nolining', '');
+            return;
+        }
 
         that.doc = that._e.ownerDocument;
         that.win = that.doc.defaultView;
