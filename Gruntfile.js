@@ -4,11 +4,14 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                banner: '/*! <%= pkg.name %> <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: 'src/lining.js',
-                dest: 'build/lining.min.js'
+                files: {
+                    'build/lining.min.js': ['src/lining.js'],
+                    'build/lining.effect.min.js': ['src/lining.effect.js'],
+                    'build/lining.all.min.js': ['src/lining.js', 'src/lining.effect.js']
+                }
             }
         },
         jshint: {

@@ -1,13 +1,9 @@
 html {
     min-width: 960px;
-    height: 100%;
-    overflow-y: hidden;
 }
 body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    overflow-y: hidden;
     line-height: 2;
     font-size: 24px;
     font-family: 'Roboto Slab', serif;
@@ -15,11 +11,6 @@ body {
 }
 code {
     font-family: 'Inconsolata', monospace;
-}
-.container {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
 }
 
 .center {
@@ -71,19 +62,6 @@ code {
 .main pre {
     margin: 0;
     font-size: 14px;
-}
-/* main line style */
-#intro {
-    opacity: 0;
-}
-#intro[data-lining="end"],
-.nolining #intro {
-    /* reset for unsupported browser */
-    opacity: 1;
-}
-#intro line {
-    opacity: 0;
-    transition: 1s opacity;
 }
 
 
