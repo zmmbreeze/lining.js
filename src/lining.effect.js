@@ -32,75 +32,122 @@
         }
     });
 
+    /**
+     * @type {string} all css text.
+     */
     var allCssText = '';
+    /**
+     * @type {Object.<string, Object>}
+     */
     var Effects = {};
+    /**
+     * create effect
+     * @param {string} name
+     * @param {Object} effect
+     * @param {string=} effect.css
+     * @param {function(Event)=} effect.before
+     * @param {function(Event)=} effect.after
+     */
     var createEffect = function (name, effect) {
         Effects[name] = effect;
         allCssText += effect['css'];
     };
+    /**
+     * call for each line
+     * @param {Element} element
+     * @param {number} timeout
+     * @param {function(Array.<Element>)} callback
+     */
+    var eachLine = function (element, timeout, callback) {
+        var lines = Array.prototype.slice.call(element.getElementsByTagName('line'), 0);
+        (function animate() {
+            if (!lines.length) {
+                return;
+            }
+
+            setTimeout(function () {
+                callback(lines);
+                animate();
+            }, timeout);
+        })();
+    };
+
+    // ---------------------------
+    // Effects
+    // ---------------------------
+
+    /**
+     * @type {string} basic Css
+     */
+    var basicCss = ''
+        + '[data-effect="{name}"] {'
+        +     'opacity:0;'
+        + '}'
+        + '[data-effect="{name}"][data-lining="end"],'
+        + '.nolining [data-effect="{name}"] {'
+        +     'opacity:1;'
+        + '}'
+        + '[data-effect="{name}"] line {'
+        +     'opacity:0;'
+        +     'transition:1s opacity;'
+        +     '-webkit-transform:translate3d(0, 0, 0);'
+        +     'transform:translate3d(0, 0, 0);'
+        + '}'
+        + '[data-effect="{name}"] line[effect-end] {'
+        +     'opacity:1;'
+        + '}';
+    /**
+     * basic after callbacks
+     * @param {Event} e event
+     */
+    var basicAfterCallback = function (e) {
+        eachLine(e.target, 150, function (lines) {
+            lines.shift().setAttribute('effect-end', '');
+        });
+    };
 
     createEffect('fadeIn', {
-        'css': ''
-            + '[data-effect="fadeIn"] {'
-            +     'opacity:0;'
-            + '}'
-            + '[data-effect="fadeIn"][data-lining="end"],'
-            + '.nolining [data-effect="fadeIn"] {'
-            +     'opacity:1;'
-            + '}'
-            + '[data-effect="fadeIn"] line {'
-            +     'opacity:0;'
-            +     'transition:1s opacity;'
-            + '}',
-        'after': function (e) {
-            var target = e.target;
-            var lines = Array.prototype.slice.call(target.getElementsByTagName('line'), 0);
-            (function animate() {
-                if (!lines.length) {
-                    return;
-                }
-
-                setTimeout(function () {
-                    lines.shift().style.opacity = 1;
-                    animate();
-                }, 150);
-            })();
-        }
+        'css': basicCss.replace(/{name}/g, 'fadeIn'),
+        'after': basicAfterCallback
     });
 
     createEffect('slideIn', {
-        'css': ''
-            + '[data-effect="slideIn"] {'
-            +     'opacity:0;'
-            + '}'
-            + '[data-effect="slideIn"][data-lining="end"],'
-            + '.nolining [data-effect="slideIn"] {'
-            +     'opacity:1;'
-            + '}'
+        'css': basicCss.replace(/{name}/g, 'slideIn')
             + '[data-effect="slideIn"] line {'
-            +     'opacity:0;'
+            +     'transition:1s opacity, .5s top;'
+            +     'position:relative;'
+            +     'top:100px;'
+            + '}'
+            + '[data-effect="slideIn"] line[effect-end] {'
+            +     'top:0;'
+            + '}',
+        'after': basicAfterCallback
+    });
+
+    createEffect('slideInFromLeft', {
+        'css': basicCss.replace(/{name}/g, 'slideInFromLeft')
+            + '[data-effect="slideInFromLeft"] line {'
             +     'transition:1s opacity, .5s left;'
-            +     '-webkit-transform:translate3d(0, 0, 0);'
-            +     'transform:translate3d(0, 0, 0);'
             +     'position:relative;'
             +     'left:-100%;'
+            + '}'
+            + '[data-effect="slideInFromLeft"] line[effect-end] {'
+            +     'left:0;'
             + '}',
-        'after': function (e) {
-            var target = e.target;
-            var lines = Array.prototype.slice.call(target.getElementsByTagName('line'), 0);
-            (function animate() {
-                if (!lines.length) {
-                    return;
-                }
+        'after': basicAfterCallback
+    });
 
-                setTimeout(function () {
-                    var line = lines.shift();
-                    line.style.opacity = 1;
-                    line.style.left = '0';
-                    animate();
-                }, 150);
-            })();
-        }
+    createEffect('slideInFromRight', {
+        'css': basicCss.replace(/{name}/g, 'slideInFromRight')
+            + '[data-effect="slideInFromRight"] line {'
+            +     'transition:1s opacity, .5s left;'
+            +     'position:relative;'
+            +     'left:100%;'
+            + '}'
+            + '[data-effect="slideInFromRight"] line[effect-end] {'
+            +     'left:0;'
+            + '}',
+        'after': basicAfterCallback
     });
 
     lining.util.createStyle(allCssText);
