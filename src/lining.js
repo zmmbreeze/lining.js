@@ -487,8 +487,8 @@
     /**
      * remove all line tags
      */
-    Lining.prototype.dispose = function () {
-        util.fireEvent(this._e, 'beforeliningdisposed', false);
+    Lining.prototype.unlining = function () {
+        util.fireEvent(this._e, 'beforeunlining', false);
 
         var lines = this._e.getElementsByTagName('line');
         var line;
@@ -514,7 +514,7 @@
         this._e.normalize();
         this._e.setAttribute('data-lining', '');
 
-        util.fireEvent(this._e, 'afterliningdisposed', false);
+        util.fireEvent(this._e, 'afterunlining', false);
     };
 
     /**
@@ -530,7 +530,7 @@
         }
 
         if (hasOldWidth && widthChanged) {
-            this.dispose();
+            this.unlining();
         }
 
         this._currentLine = null;

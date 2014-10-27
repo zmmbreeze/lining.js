@@ -61,29 +61,24 @@
         s.modify('move', 'forward', 'lineboundary');
         s.modify('extend', 'forward', 'lineboundary');
     }
-/*
-    var t = document.getElementById('t');
-    t.childNodes[0].splitText(5);
-    util.splitNode(t.childNodes[1], true);
-*/
 
     var demo = document.getElementById('demo');
     demo.addEventListener('beforelining', function (e) {
         var t = e.target;
         // e.preventDefault();
-        console.log('beforelining: ' + t.hasAttribute('lining'));
+        console.log('beforelining: ' + (t.getAttribute('data-lining') === 'end'));
     });
     demo.addEventListener('afterlining', function (e) {
         var t = e.target;
-        console.log('afterlining: ' + t.hasAttribute('lining'));
+        console.log('afterlining: ' + (t.getAttribute('data-lining') === 'end'));
     });
-    demo.addEventListener('beforeliningdisposed', function (e) {
+    demo.addEventListener('beforeunlining', function (e) {
         var t = e.target;
-        console.log('beforeliningdisposed: ' + t.hasAttribute('lining'));
+        console.log('beforeunlining: ' + (t.getAttribute('data-lining') === 'end'));
     });
-    demo.addEventListener('afterliningdisposed', function (e) {
+    demo.addEventListener('afterunlining', function (e) {
         var t = e.target;
-        console.log('afterliningdisposed: ' + t.hasAttribute('lining'));
+        console.log('afterunlining: ' + (t.getAttribute('data-lining') === 'end'));
     });
     </script>
 </div>
