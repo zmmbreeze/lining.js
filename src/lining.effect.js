@@ -114,7 +114,7 @@
     createEffect('slideIn', {
         'css': basicCss.replace(/{name}/g, 'slideIn')
             + '[data-effect="slideIn"] line {'
-            +     'transition:1s opacity, .5s top;'
+            +     'transition:1s opacity, .6s top;'
             +     'position:relative;'
             +     'top:100px;'
             + '}'
@@ -127,7 +127,7 @@
     createEffect('slideInFromLeft', {
         'css': basicCss.replace(/{name}/g, 'slideInFromLeft')
             + '[data-effect="slideInFromLeft"] line {'
-            +     'transition:1s opacity, .5s left;'
+            +     'transition:1s opacity, .6s left;'
             +     'position:relative;'
             +     'left:-100%;'
             + '}'
@@ -140,12 +140,36 @@
     createEffect('slideInFromRight', {
         'css': basicCss.replace(/{name}/g, 'slideInFromRight')
             + '[data-effect="slideInFromRight"] line {'
-            +     'transition:1s opacity, .5s left;'
+            +     'transition:1s opacity, .6s left;'
             +     'position:relative;'
             +     'left:100%;'
             + '}'
             + '[data-effect="slideInFromRight"] line[effect-end] {'
             +     'left:0;'
+            + '}',
+        'after': basicAfterCallback
+    });
+
+    createEffect('rolling', {
+        'css': basicCss.replace(/{name}/g, 'rolling')
+            + '[data-effect="rolling"] {'
+            +     '-webkit-perspective:1000px;'
+            +     'perspective:1000px;'
+            + '}'
+            + '[data-effect="rolling"] line {'
+            +     'transition:.6s;'
+            +     '-webkit-backface-visibility:hidden;'
+            +     'backface-visibility:hidden;'
+            +     '-webkit-transform-origin:top;'
+            +     '-webkit-transform-style:preserve-3d;'
+            +     '-webkit-transform:rotatex(90deg);'
+            +     'transform-origin:top;'
+            +     'transform-style:preserve-3d;'
+            +     'transform:rotatex(90deg);'
+            + '}'
+            + '[data-effect="rolling"] line[effect-end] {'
+            +     '-webkit-transform:rotatex(0deg);'
+            +     'transform:rotatex(0deg);'
             + '}',
         'after': basicAfterCallback
     });
