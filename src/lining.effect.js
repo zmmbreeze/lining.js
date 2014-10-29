@@ -14,7 +14,7 @@
         return;
     }
 
-    document.body.addEventListener('beforelining', function (e) {
+    document.addEventListener('beforelining', function (e) {
         var target = e.target;
         var effectName = target.getAttribute('data-effect');
         var effect = Effects[effectName];
@@ -23,7 +23,7 @@
         }
     });
 
-    document.body.addEventListener('afterlining', function (e) {
+    document.addEventListener('afterlining', function (e) {
         var target = e.target;
         var effectName = target.getAttribute('data-effect');
         var effect = Effects[effectName];
@@ -171,7 +171,11 @@
             +     '-webkit-transform:rotatex(0deg);'
             +     'transform:rotatex(0deg);'
             + '}',
-        'after': basicAfterCallback
+        'after': function (e) {
+            eachLine(e.target, 300, function (lines) {
+                lines.shift().setAttribute('effect-end', '');
+            });
+        }
     });
 
     lining.util.createStyle(allCssText);
