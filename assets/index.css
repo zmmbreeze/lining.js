@@ -32,6 +32,9 @@ code {
     color: #222;
     background-color: #FFF;
 }
+.main .v-center {
+    
+}
 .main strong {
     text-transform: uppercase;
 }
@@ -129,16 +132,16 @@ a.tip:hover {
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
 }
-.v-center[show-code] .preview {
+.demo .v-center[show-code] .preview {
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
 }
-.v-center[show-code] .code {
+.demo .v-center[show-code] .code {
     -webkit-transform: translateX(0);
     transform: translateX(0);
 }
-.v-center .preview,
-.v-center .code {
+.demo .v-center .preview,
+.demo .v-center .code {
     position: absolute;
     top: 0;
     left: 0;
@@ -152,13 +155,13 @@ a.tip:hover {
     transition: .5s ease-in -webkit-transform;
     transition: .5s ease-in transform;
 }
-.v-center .code {
+.demo .v-center .code {
     overflow: auto;
     box-sizing: border-box;
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
 }
-.v-center .code pre {
+.demo .v-center .code pre {
     margin: 0 !important;
 }
 
