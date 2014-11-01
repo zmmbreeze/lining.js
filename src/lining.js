@@ -514,17 +514,24 @@
         this._e.normalize();
         this._e.setAttribute('data-lining', '');
 
+        // reset
+        this._currentLine = null;
+        this._oldWidth = -1;
+        this.count = 0;
+
         util.fireEvent(this._e, 'afterunlining', false);
     };
 
     /**
      * Remove all line tags if needed,
      * and create new line tags.
+     * @param {boolean} opt_force
      */
-    Lining.prototype.relining = function () {
+    Lining.prototype.relining = function (opt_force) {
         var newWidth = this._e.offsetWidth;
         var hasOldWidth = this._oldWidth >= 0;
-        var widthChanged = this._oldWidth !== newWidth;
+        // 宽度改变了，或者强制开始
+        var widthChanged = opt_force || this._oldWidth !== newWidth;
         if ((hasOldWidth && !widthChanged) || !util.fireEvent(this._e, 'beforelining', true)) {
             return;
         }
