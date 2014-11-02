@@ -538,14 +538,14 @@
         }
 
         var newWidth = this._e.offsetWidth;
-        var hasOldWidth = this._oldWidth >= 0;
+        var isLininged = (this._oldWidth >= 0) || (this._e.getAttribute('data-lining') === 'end');
         // 宽度改变了，或者强制开始
         var widthChanged = opt_force || this._oldWidth !== newWidth;
-        if ((hasOldWidth && !widthChanged) || !util.fireEvent(this._e, 'beforelining', true)) {
+        if ((isLininged && !widthChanged) || !util.fireEvent(this._e, 'beforelining', true)) {
             return;
         }
 
-        if (hasOldWidth && widthChanged) {
+        if (isLininged && widthChanged) {
             this.unlining();
         }
 
