@@ -457,6 +457,7 @@
         that._inited = true;
 
         if (!util.isSupported()) {
+            this._e.removeAttribute('data-lining');
             return;
         }
 
@@ -488,6 +489,10 @@
      * remove all line tags
      */
     Lining.prototype.unlining = function () {
+        if (!util.isSupported()) {
+            return;
+        }
+
         util.fireEvent(this._e, 'beforeunlining', false);
 
         var lines = this._e.getElementsByTagName('line');
@@ -528,6 +533,10 @@
      * @param {boolean} opt_force
      */
     Lining.prototype.relining = function (opt_force) {
+        if (!util.isSupported()) {
+            return;
+        }
+
         var newWidth = this._e.offsetWidth;
         var hasOldWidth = this._oldWidth >= 0;
         // 宽度改变了，或者强制开始
