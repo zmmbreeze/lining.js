@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Lining.js</title>
-    <link href='http://fonts.useso.com/css?family=Roboto+Slab|Calligraffitti|Inconsolata|Dancing+Script|Handlee|Allerta+Stencil' rel='stylesheet' type='text/css'>
+    <meta name="Keywords" content="lining.js,typography,line,javascript,css">
+    <meta name="Description" content="A plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Calligraffitti|Inconsolata|Dancing+Script|Handlee|Allerta+Stencil' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/normalize.css" />
     <link rel="stylesheet" href="assets/index.css" />
     <link rel="stylesheet" href="assets/prism.css" />
@@ -11,13 +13,13 @@
 </head>
 <body>
 
-<a href="https://github.com/zmmbreeze/lining.js" target="_blank"><img style="position:absolute;top:0;right:0;z-index:999;border:0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+<a href="https://github.com/zmmbreeze/lining.js" target="_blank"><img style="position:fixed;top:0;right:0;z-index:999;border:0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 <div class="main">
     <div class="center">
-        <div class="v-center" id="intro" data-lining data-effect="rolling">
+        <div class="v-center" id="intro">
             <h1>Lining.js</h1>
             <p>In CSS we already have the selector <code>::first-line</code> to apply style on the first line of one element. But there is no selector like <code>::nth-line()</code>, <code>::nth-last-line()</code> or even <code>::last-line</code>. Then I read an article <a href="http://css-tricks.com/a-call-for-nth-everything/" target="_blank">A Call for ::nth-everything</a> from CSS tricks. <code>::nth-line()</code> is actually really useful in some situation.</p>
-            <p>There comes <strong>Lining.js</strong>. It is built for this situation!</p>
+            <p>There comes <strong><a href="https://github.com/zmmbreeze/lining.js" target="_blank">Lining.js</a></strong>. It offers you complete <strong>down-to-the-line</strong> control like this:</p>
             <pre><code class="language-markup">&lt;div class="poem" data-lining&gt;Some text...&lt;/div&gt;
 &lt;style&gt;
 .poem line[first] { /* `.poem::first-line`*/ }
@@ -35,7 +37,7 @@
                 <img src="assets/opera_256x256.png" width="24" height="24" alt="Lastest opera">
             </p>
         </div>
-        <a href="#demo-1" class="tip" data-do="tip">DEMO</a>
+        <a href="#demo-1" class="tip">DEMO</a>
     </div>
 </div>
 
@@ -58,7 +60,7 @@
             </div>
         </div>
         <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
-        <a href="#demo-2" class="tip" data-do="tip">NEXT</a>
+        <a href="#demo-2" class="tip">NEXT</a>
     </div>
 </div>
 
@@ -97,7 +99,7 @@
             </div>
         </div>
         <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
-        <a href="#demo-3" class="tip" data-do="tip">NEXT</a>
+        <a href="#demo-3" class="tip">NEXT</a>
     </div>
 </div>
 
@@ -127,11 +129,151 @@
             </div>
         </div>
         <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
-        <a href="#download" class="tip" data-do="tip">NEXT</a>
+        <a href="#demo-4" class="tip">NEXT</a>
     </div>
 </div>
 
-To be or not to be that is the question.<br/>Whether it's nobler in the mind to suffer.<br>The slings and arrows of outrageous fortune orr to take arms against a sea of troubles, And by opposing end them.
+<div class="demo demo-4" id="demo-4">
+    <div class="center">
+        <div class="v-center">
+            <div class="effects preview">
+                <div id="effectText" class="effects-text">
+                    <h3>The Furthest Distance In The World</h3>
+                    <h4>by Rabindranath Tagore</h4>
+                    <p>The furthest distance in the world<br/>
+                    Is not between life and death<br/>
+                    But when I stand in front of you<br/>
+                    Yet you don't know that I love you.</p>
+                    <p>The furthest distance in the world<br/>
+                    Is not when I stand in front of you<br/>
+                    Yet you can't see my love<br/>
+                    But when undoubtly knowing the love from both<br/>
+                    Yet cannot be together.</p>
+                    <p>The furthest distance in the world<br/>
+                    Is not being apart while being in love<br/>
+                    But when I plainly cannot resist the yearning<br/>
+                    Yet pretending you have never been in my heart.</p>
+                    <p>The furthest distance in the world<br/>
+                    Is not struggling against the tides<br/>
+                    But using one's indifferent heart<br/>
+                    To dig an uncrossable river<br/>
+                    For the one who loves you.</p>
+                </div>
+                <div class="effects-do">
+                    <label>
+                    <select id="effectName">
+                        <option value="fadeIn">fadeIn</option>
+                        <option value="slideIn">slideIn</option>
+                        <option value="slideInFromLeft">slideInFromLeft</option>
+                        <option value="slideInFromRight">slideInFromRight</option>
+                        <option value="rolling">rolling</option>
+                    </select>
+                    </label>
+                    <button data-do="run-effect">GO!</button>
+                </div>
+                <a class="switcher" data-do="show-code" href="###">SHOW CODE</a>
+            </div>
+            <div class="code">
+                <pre class="language-markup"><code class="language-markup">&lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
+&lt;script src="YOUR_PATH/lining.effect.min.js"&gt;&lt;/script&gt;
+&lt;!-- Or using lining.all.min.js instead. --&gt;
+&lt;!-- &lt;script src="YOUR_PATH/lining.all.min.js"&gt;&lt;/script&gt; --&gt;
+
+&lt;div data-lining data-effect="rolling"&gt;
+Your text...
+&lt;div&gt;</code></pre>
+                <a class="switcher" data-do="preview" href="###">PREVIEW</a>
+            </div>
+        </div>
+        <a href="#usage" class="tip">USAGE</a>
+    </div>
+</div>
+
+<div class="main usage" id="usage">
+    <div class="center">
+        <h2>BASIC USAGE</h2>
+        <p>All you need to do is adding <code>data-lining</code> attribute on your block element and including the <code>lining.min.js</code> script. Then you can write css to control it's line style. For example:</p>
+        <pre><code class="language-markup">&lt;div class="poem" data-lining&gt;Some text...&lt;/div&gt;
+&lt;style&gt;
+.poem { /* default style for `.poem` */ }
+.nolining .poem { /* style for `.poem` when browser don't support lining.js */ }
+.poem[data-lining] { /* style for `.poem` when browser support lining.js */ }
+.poem[data-lining="end"] { /* style for `.poem` when `line` tags created */ }
+.poem line { /* style for lines */ }
+&lt;/style&gt;
+&lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+        <h2>RWD</h2>
+        <p>If you want your line style support Responsive web design. Make sure you add the <code>data-auto-resize</code> attribute. It will automatically relining when window resize event happen.</p>
+        <pre><code class="language-markup">&lt;div class="poem" data-lining data-auto-resize&gt;Some text...&lt;/div&gt;</code></pre>
+
+        <h2><code>data-from</code> & <code>data-to</code></h2>
+        <p>Those two attributes help you control which line tags to be created. For example:</p>
+        <pre><code class="language-markup">&lt;div class="poem"
+    data-lining
+    data-from="2"
+    data-to="3"&gt;
+First Line.&lt;br/&gt;
+Second Line.&lt;br/&gt;
+Third Line.&lt;br/&gt;
+Fourth Line.&lt;br/&gt;
+&lt;/div&gt;
+</code></pre>
+        <p>After lining, only the second and third line tag will be created. Check out the <a href="http://jsbin.com/riweb/1/edit?output" target="_blank">demo</a>.</p>
+
+        <h2>Javascript</h2>
+        <p>You can also create and manage line tags by javascript. And lining.js also give you for events to do special things.</p>
+        <pre><code class="language-markup">&lt;div id="poem"&gt;Some text..&lt;/div&gt;
+&lt;script&gt;
+var poem = document.getElementById('poem');
+poem.addEventListener('beforelining', function (e) {
+    // prevent lining if you want
+    e.preventDefault();
+}, false);
+poem.addEventListener('afterlining', function () {
+    // do something after lining
+}, false);
+poem.addEventListener('beforeunlining', function () {
+    // do something before unlining
+    // can't prevent unlining
+}, false);
+poem.addEventListener('afterunlining', function () {
+    // do something after unlining
+}, false);
+
+
+// start lining
+var poemLining = lining(poem, {
+    // optional config
+    'autoResize': true,
+    'from': 2,
+    'to': 3
+});
+// `unlining` method will remove all line tags.
+poemLining.unlining();
+// `relining` method will call `unlining` first if needed,
+// then start lining again.
+poemLining.relining();
+&lt;/script&gt;
+</code></pre>
+
+        <h2>lining.effect.js</h2>
+        <p><code>lining.effect.js</code> is an extra part of <code>lining.js</code>. It gives you the power to add appearances animation on your lines. Use it like this:</p>
+        <pre><code class="language-markup">&lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
+&lt;script src="YOUR_PATH/lining.effect.min.js"&gt;&lt;/script&gt;
+&lt;!-- Or using lining.all.min.js instead, it includes both of those two file. --&gt;
+&lt;!-- &lt;script src="YOUR_PATH/lining.all.min.js"&gt;&lt;/script&gt; --&gt;
+
+&lt;div data-lining data-effect="rolling"&gt;
+Your text...
+&lt;div&gt;</code></pre>
+
+        <a href="https://github.com/zmmbreeze/lining.js/releases" target="_blank" class="download">DOWNLOAD</a>
+    </div>
+</div>
+
+<a href="###" data-do="top" class="top"></a>
 
 <script>
 // set style for body
@@ -142,9 +284,13 @@ window.addEventListener('resize', function () {
 </script>
 <script src="assets/prism.js"></script>
 <script>
+var g = function (id) {
+    return document.getElementById(id);
+};
 // -------------------------
 // actions
 // -------------------------
+var effectLining;
 var actions = {
     'toggle': function (target) {
         var status = target.getAttribute('data-status');
@@ -162,34 +308,44 @@ var actions = {
             target.innerHTML = 'PREVIEW';
         }
     },
-    'tip': function (target) {
-        var dest = target.href.match(/#([\w\W]+)/);
-        if (!dest) {
-            return;
+    'preview': function (target) {
+        target.parentNode.parentNode.removeAttribute('show-code');
+    },
+    'show-code': function (target) {
+        target.parentNode.parentNode.setAttribute('show-code', '');
+    },
+    'top': function () {
+        if (window.scrollTo) {
+            window.scrollTo(0, 0);
         }
-        dest = dest[1];
-        dest = document.getElementById(dest);
-        if (dest.scrollIntoView) {
-            dest.scrollIntoView();
+    },
+    'run-effect': function (target) {
+        var effectName = g('effectName').value;
+        var effectText = g('effectText');
+        effectText.setAttribute('data-effect', effectName);
+        if (!effectLining) {
+            effectLining = lining(effectText);
+        }
+        else {
+            effectLining.relining(true);
         }
     }
 };
-document.body.addEventListener('click', function (e) {
-    var target = e.target;
-    var actionName = target.getAttribute('data-do');
-    if (target.nodeName !== 'A' || !actionName) {
-        return;
-    }
 
-    e.preventDefault();
-    actions[actionName](target);
-}, false);
+window.addEventListener('load', function () {
+    document.body.addEventListener('click', function (e) {
+        var target = e.target;
+        var actionName = target.getAttribute('data-do');
+        if (!actionName) {
+            return;
+        }
 
-// -------------------------
-// main page effect
-// -------------------------
+        e.preventDefault();
+        actions[actionName](target);
+    }, false);
+});
+
 </script>
 </div>
 </body>
 </html>
-
