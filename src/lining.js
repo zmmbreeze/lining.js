@@ -19,6 +19,7 @@
         'TEXTAREA': true,
         'IMG': true,
         'INPUT': true,
+        'SELECT': true,
         'HR': true
     };
 

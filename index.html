@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Lining.js</title>
     <meta name="Keywords" content="lining.js,typography,line,javascript,css">
-    <meta name="Description" content="A plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.">
+    <meta name="Description" content="A easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.">
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Calligraffitti|Inconsolata|Dancing+Script|Handlee|Allerta+Stencil' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/normalize.css" />
     <link rel="stylesheet" href="assets/index.css" />
@@ -18,7 +18,7 @@
     <div class="center">
         <div class="v-center">
             <h1>Lining.js</h1>
-            <p>In CSS we already have the selector <code>::first-line</code> to apply style on the first line of one element. But there is no selector like <code>::nth-line()</code>, <code>::nth-last-line()</code> or even <code>::last-line</code>. Then I read an article <a href="http://css-tricks.com/a-call-for-nth-everything/" target="_blank">A Call for ::nth-everything</a> from CSS tricks. <code>::nth-line()</code> is actually really useful in some situation.</p>
+            <p>In CSS we already have the selector <code>::first-line</code> to apply style on the first line of element. But there is no selector like <code>::nth-line()</code>, <code>::nth-last-line()</code> or even <code>::last-line</code>. Then I read an article <a href="http://css-tricks.com/a-call-for-nth-everything/" target="_blank">A Call for ::nth-everything</a> from CSS tricks. <code>::nth-line()</code> is actually really useful in some situation.</p>
             <p>There comes <strong><a href="https://github.com/zmmbreeze/lining.js" target="_blank">Lining.js</a></strong>. It offers you complete <strong>down-to-the-line</strong> control like this:</p>
             <pre><code class="language-markup">&lt;div class="poem" data-lining&gt;Some text...&lt;/div&gt;
 &lt;style&gt;
@@ -224,7 +224,7 @@ Fourth Line.&lt;br/&gt;
         <p>After lining, only the second and third line tag will be created. Check out the <a href="http://jsbin.com/riweb/1/edit?output" target="_blank">demo</a>.</p>
 
         <h2>Javascript</h2>
-        <p>You can also create and manage line tags by javascript. And lining.js also give you for events to do special things.</p>
+        <p>You can also create and manage line tags by javascript. And give you four events to do special things.</p>
         <pre><code class="language-markup">&lt;div id="poem"&gt;Some text..&lt;/div&gt;
 &lt;script&gt;
 var poem = document.getElementById('poem');
@@ -345,7 +345,16 @@ window.addEventListener('load', function () {
         actions[actionName](target);
     }, false);
 });
+</script>
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36422454-1', 'auto');
+  ga('send', 'pageview');
 </script>
 </div>
 </body>

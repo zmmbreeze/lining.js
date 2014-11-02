@@ -3,7 +3,7 @@ LINING.JS
 
 A easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.
 
-In CSS we already have the selector `::first-line` to apply style on the first line of one element. But there is no selector like `::nth-line()`, `::nth-last-line()` or even `::last-line`. Then I read an article [A Call for ::nth-everything](http://css-tricks.com/a-call-for-nth-everything/) from CSS tricks. `::nth-line()` is actually really useful in some situation.
+In CSS we already have the selector `::first-line` to apply style on the first line of element. But there is no selector like `::nth-line()`, `::nth-last-line()` or even `::last-line`. Then I read an article [A Call for ::nth-everything](http://css-tricks.com/a-call-for-nth-everything/) from CSS tricks. `::nth-line()` is actually really useful in some situation.
 
 There comes [LINING.JS](http://zencode.in/lining.js/). It offers you complete DOWN-TO-THE-LINE control like this:
 
@@ -28,7 +28,7 @@ Supported browsers
 
 BASIC USAGE
 --
-All you need to do is adding data-lining attribute on your block element and including the lining.min.js script. Then you can write css to control it's line style. For example:
+All you need to do is adding `data-lining` attribute on your block element and including the `lining.min.js` script. Then you can write css to control it's line style. For example:
 
 ```html
 <div class="poem" data-lining>Some text...</div>
@@ -44,7 +44,7 @@ All you need to do is adding data-lining attribute on your block element and inc
 
 RWD
 --
-If you want your line style support Responsive web design. Make sure you add the data-auto-resize attribute. It will automatically relining when window resize event happen.
+If you want your line style support Responsive web design. Make sure you add the `data-auto-resize` attribute. It will automatically relining when window resize event happen.
 
 ```html
 <div class="poem" data-lining data-auto-resize>Some text...</div>
@@ -70,7 +70,7 @@ After lining, only the second and third line tag will be created. Check out the 
 
 Javascript
 --
-You can also create and manage line tags by javascript. And lining.js also give you for events to do special things.
+You can also create and manage line tags by javascript. And give you four events to do special things.
 
 ```html
 <div id="poem">Some text..</div>
@@ -107,7 +107,7 @@ poemLining.relining();
 lining.effect.js
 ```
 
-lining.effect.js is an extra part of lining.js. It gives you the power to add appearances animation on your lines. Use it like this:
+`lining.effect.js` is an extra part of `lining.js`. It gives you the power to add appearances animation on your lines. Use it like this:
 
 ```html
 <script src="YOUR_PATH/lining.min.js"></script>
