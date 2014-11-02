@@ -343,7 +343,7 @@ a.tip:hover {
     height: auto;
 }
 .usage h2 {
-    margin: 16px 0;
+    margin: 18px 0;
     line-height: 1;
     text-align: left;
     font-size: 1.5em;
@@ -352,10 +352,10 @@ a.tip:hover {
 /* top */
 .top {
     position: fixed;
-    right: 0;
+    right: 10px;
     bottom: 20px;
     display: block;
-    padding: .5em;
+    padding: .5em 0;
     width: 3em;
     height: 2em;
     line-height: 2;
