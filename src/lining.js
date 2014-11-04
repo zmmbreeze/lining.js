@@ -67,14 +67,14 @@
             // init style
             util.createStyle(
                 ''
-                + 'line {'
+                + 'text-line {'
                 +     'display:block;'
                 +     'text-indent:0;'
                 + '}'
-                + 'pre line {'
+                + 'pre text-line {'
                 +     'display:inline;'
                 + '}'
-                + 'line[first-in-element]:first-child {'
+                + 'text-line[first-in-element]:first-child {'
                 +     'text-indent:inherit;'
                 + '}'
             );
@@ -304,7 +304,7 @@
         isInLine: function (node, root) {
             node = node.parentNode;
             while (root.contains(node)) {
-                if (node.nodeName === 'LINE') {
+                if (node.nodeName === 'TEXT-LINE') {
                     return true;
                 }
                 node = node.parentNode;
@@ -365,6 +365,14 @@
         this.to = opt['to']
             || parseInt(element.getAttribute('data-to'), 10)
             || null;
+
+        /**
+         * line class name
+         * @type {string}
+         */
+        this.lineClassName = opt['lineClass']
+            || element.getAttribute('data-line-class')
+            || 'line';
 
         /**
          * element
@@ -496,7 +504,7 @@
 
         util.fireEvent(this._e, 'beforeunlining', false);
 
-        var lines = this._e.getElementsByTagName('line');
+        var lines = this._e.getElementsByTagName('text-line');
         var line;
         var removed;
         var parent;
@@ -764,7 +772,8 @@
      * @param {Selection} s
      */
     Lining.prototype._createLine = function (s) {
-        var line = doc.createElement('line');
+        var line = doc.createElement('text-line');
+        line.className = this.lineClassName;
         line.setAttribute('index', ++this.count);
         try {
             this._getRange().surroundContents(line);

@@ -38,12 +38,12 @@ body {
     list-style: none;
 }
 
-line {
+.line {
     position: relative;
     color: #666;
     background-color: #EFEFEF;
 }
-line:before {
+.line:before {
     content: attr(index) '.';
     position: absolute;
     right: 10px;
@@ -53,7 +53,7 @@ line:before {
     text-align: center;
     color: #666;
 }
-line {
+.line {
     margin: 1px 0;
     padding: 0 10px;
     background-color: #EFEFEF;

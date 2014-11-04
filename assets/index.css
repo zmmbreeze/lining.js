@@ -197,7 +197,7 @@ a.tip:hover {
     font-size: 32px;
     font-family: 'Dancing Script', serif;
 }
-.poem line:nth-of-type(-n+2) {
+.poem .line:nth-of-type(-n+2) {
     font-size: 42px;
     color: #DA4453;
 }
@@ -218,15 +218,15 @@ a.tip:hover {
     color: hsla(354, 67%, 46%, 1);
     font-family: 'Handlee', serif;
 }
-.fadeout line:nth-last-of-type(3) {
+.fadeout .line:nth-last-of-type(3) {
    color: hsla(354, 67%, 55%, 1);
    font-size: 80%;
 }
-.fadeout line:nth-last-of-type(2) {
+.fadeout .line:nth-last-of-type(2) {
    color: hsla(354, 67%, 60%, 1);
    font-size: 70%;
 }
-.fadeout line:nth-last-of-type(1) {
+.fadeout .line:nth-last-of-type(1) {
    color: hsla(354, 67%, 65%, 1);
    font-size: 60%
 }
@@ -260,11 +260,11 @@ a.tip:hover {
     text-decoration: none;
     border-bottom: 1px solid #f4f1de;
 }
-.linenumber line {
+.linenumber .line {
     position: relative;
     margin-left: 32px; /* 16 * 2*/
 }
-.linenumber line:before {
+.linenumber .line:before {
     content: attr(index) '.';
     position: absolute;
     right: 10px;

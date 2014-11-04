@@ -22,11 +22,11 @@
             <p>There comes <strong><a href="https://github.com/zmmbreeze/lining.js" target="_blank">Lining.js</a></strong>. It offers you complete <strong>down-to-the-line</strong> control like this:</p>
             <pre><code class="language-markup">&lt;div class="poem" data-lining&gt;Some text...&lt;/div&gt;
 &lt;style&gt;
-.poem line[first] { /* `.poem::first-line`*/ }
-.poem line[last] { /* `.poem::last-line` */ }
-.poem line[index="5"] { /* `.poem::nth-line(5)` */ }
-.poem line:nth-of-type(-n+2) { /* `.poem::nth-line(-n+2)` */ }
-.poem line:nth-last-of-type(2n) { /* `.poem:::nth-last-line(2n)` */ }
+.poem .line[first] { /* `.poem::first-line`*/ }
+.poem .line[last] { /* `.poem::last-line` */ }
+.poem .line[index="5"] { /* `.poem::nth-line(5)` */ }
+.poem .line:nth-of-type(-n+2) { /* `.poem::nth-line(-n+2)` */ }
+.poem .line:nth-last-of-type(2n) { /* `.poem:::nth-last-line(2n)` */ }
 &lt;/style&gt;
 &lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
 </code></pre>
@@ -54,7 +54,7 @@
     font-size: 32px;
     font-family: 'Dancing Script' serif;
 }
-.poem line:nth-of-type(-n+2) {
+.poem .line:nth-of-type(-n+2) {
     font-size: 42px;
     color: #DA4453;
 }</code></pre>
@@ -85,15 +85,15 @@
     color: hsla(354, 67%, 46%, 1);
     font-family: 'Handlee' serif;
 }
-.fadeout line:nth-last-of-type(3) {
+.fadeout .line:nth-last-of-type(3) {
    color: hsla(354, 67%, 55%, 1);
    font-size: 80%;
 }
-.fadeout line:nth-last-of-type(2) {
+.fadeout .line:nth-last-of-type(2) {
    color: hsla(354, 67%, 60%, 1);
    font-size: 70%;
 }
-.fadeout line:nth-last-of-type(1) {
+.fadeout .line:nth-last-of-type(1) {
    color: hsla(354, 67%, 65%, 1);
    font-size: 60%
 }</code></pre>
@@ -113,11 +113,11 @@
             From <a href="http://en.wikipedia.org/wiki/Typography" target="_blank">Wikipedia</a>.</P>
             </div>
             <div class="code">
-                <pre><code class="language-css">.linenumber line {
+                <pre><code class="language-css">.linenumber .line {
     position: relative;
     margin-left: 32px; /* 16 * 2*/
 }
-.linenumber line:before {
+.linenumber .line:before {
     content: attr(index) '.';
     position: absolute;
     right: 10px;
@@ -200,7 +200,7 @@ Your text...
 .nolining .poem { /* style for `.poem` when browser don't support lining.js */ }
 .poem[data-lining] { /* style for `.poem` when browser support lining.js */ }
 .poem[data-lining="end"] { /* style for `.poem` when `line` tags created */ }
-.poem line { /* style for lines */ }
+.poem .line { /* style for lines */ }
 &lt;/style&gt;
 &lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
 </code></pre>
@@ -209,8 +209,8 @@ Your text...
         <p>If you want your line style support Responsive web design. Make sure you add the <code>data-auto-resize</code> attribute. It will automatically relining when window resize event happen.</p>
         <pre><code class="language-markup">&lt;div class="poem" data-lining data-auto-resize&gt;Some text...&lt;/div&gt;</code></pre>
 
-        <h2><code>data-from</code> & <code>data-to</code></h2>
-        <p>Those two attributes help you control which line tags to be created. For example:</p>
+        <h2>Other attributes</h2>
+        <p><code>data-from</code> and <code>data-to</code> help you control which line tags to be created. For example:</p>
         <pre><code class="language-markup">&lt;div class="poem"
     data-lining
     data-from="2"
@@ -222,6 +222,7 @@ Fourth Line.&lt;br/&gt;
 &lt;/div&gt;
 </code></pre>
         <p>After lining, only the second and third line tag will be created. Check out the <a href="http://jsbin.com/riweb/1/edit?output" target="_blank">demo</a>.</p>
+        <p>And <code>data-line-class</code> help you control the class name of line tags, if you don't want to use the default class name: <code>line</code>.</p>
 
         <h2>Javascript</h2>
         <p>You can also create and manage line tags by javascript. And give you four events to do special things.</p>
@@ -249,7 +250,8 @@ var poemLining = lining(poem, {
     // optional config
     'autoResize': true,
     'from': 2,
-    'to': 3
+    'to': 3,
+    'lineClass': 'my-class'
 });
 // `unlining` method will remove all line tags.
 poemLining.unlining();

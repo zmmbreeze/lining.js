@@ -10,11 +10,11 @@ There comes [LINING.JS](http://zencode.in/lining.js/). It offers you complete DO
 ```html
 <div class="poem" data-lining>Some text...</div>
 <style>
-.poem line[first] { /* `.poem::first-line`*/ }
-.poem line[last] { /* `.poem::last-line` */ }
-.poem line[index="5"] { /* `.poem::nth-line(5)` */ }
-.poem line:nth-of-type(-n+2) { /* `.poem::nth-line(-n+2)` */ }
-.poem line:nth-last-of-type(2n) { /* `.poem:::nth-last-line(2n)` */ }
+.poem .line[first] { /* `.poem::first-line`*/ }
+.poem .line[last] { /* `.poem::last-line` */ }
+.poem .line[index="5"] { /* `.poem::nth-line(5)` */ }
+.poem .line:nth-of-type(-n+2) { /* `.poem::nth-line(-n+2)` */ }
+.poem .line:nth-last-of-type(2n) { /* `.poem:::nth-last-line(2n)` */ }
 </style>
 <script src="YOUR_PATH/lining.min.js"></script>
 ```
@@ -37,7 +37,7 @@ All you need to do is adding `data-lining` attribute on your block element and i
 .nolining .poem { /* style for `.poem` when browser don't support lining.js */ }
 .poem[data-lining] { /* style for `.poem` when browser support lining.js */ }
 .poem[data-lining="end"] { /* style for `.poem` when `line` tags created */ }
-.poem line { /* style for lines */ }
+.poem .line { /* style for lines */ }
 </style>
 <script src="YOUR_PATH/lining.min.js"></script>
 ```

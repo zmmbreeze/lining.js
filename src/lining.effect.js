@@ -59,7 +59,7 @@
      * @param {function(Array.<Element>)} callback
      */
     var eachLine = function (element, timeout, callback) {
-        var lines = Array.prototype.slice.call(element.getElementsByTagName('line'), 0);
+        var lines = Array.prototype.slice.call(element.getElementsByTagName('text-line'), 0);
         (function animate() {
             if (!lines.length) {
                 return;
@@ -87,14 +87,14 @@
         + '.nolining [data-effect="{name}"] {'
         +     'opacity:1;'
         + '}'
-        + '[data-effect="{name}"] line {'
+        + '[data-effect="{name}"] text-line {'
         +     'opacity:0;'
         +     'transition:1s opacity;'
         +     '-webkit-transform:translate3d(0, 0, 0);'
         +     'transform:translate3d(0, 0, 0);'
         +     '-webkit-font-smoothing:antialiased;'
         + '}'
-        + '[data-effect="{name}"] line[effect-end] {'
+        + '[data-effect="{name}"] text-line[effect-end] {'
         +     'opacity:1;'
         + '}';
     /**
@@ -114,12 +114,12 @@
 
     createEffect('slideIn', {
         'css': basicCss.replace(/{name}/g, 'slideIn')
-            + '[data-effect="slideIn"] line {'
+            + '[data-effect="slideIn"] text-line {'
             +     'transition:1s opacity, .6s top;'
             +     'position:relative;'
             +     'top:100px;'
             + '}'
-            + '[data-effect="slideIn"] line[effect-end] {'
+            + '[data-effect="slideIn"] text-line[effect-end] {'
             +     'top:0;'
             + '}',
         'after': basicAfterCallback
@@ -127,12 +127,12 @@
 
     createEffect('slideInFromLeft', {
         'css': basicCss.replace(/{name}/g, 'slideInFromLeft')
-            + '[data-effect="slideInFromLeft"] line {'
+            + '[data-effect="slideInFromLeft"] text-line {'
             +     'transition:1s opacity, .6s left;'
             +     'position:relative;'
             +     'left:-100%;'
             + '}'
-            + '[data-effect="slideInFromLeft"] line[effect-end] {'
+            + '[data-effect="slideInFromLeft"] text-line[effect-end] {'
             +     'left:0;'
             + '}',
         'after': basicAfterCallback
@@ -140,12 +140,12 @@
 
     createEffect('slideInFromRight', {
         'css': basicCss.replace(/{name}/g, 'slideInFromRight')
-            + '[data-effect="slideInFromRight"] line {'
+            + '[data-effect="slideInFromRight"] text-line {'
             +     'transition:1s opacity, .6s left;'
             +     'position:relative;'
             +     'left:100%;'
             + '}'
-            + '[data-effect="slideInFromRight"] line[effect-end] {'
+            + '[data-effect="slideInFromRight"] text-line[effect-end] {'
             +     'left:0;'
             + '}',
         'after': basicAfterCallback
@@ -157,7 +157,7 @@
             +     '-webkit-perspective:1000px;'
             +     'perspective:1000px;'
             + '}'
-            + '[data-effect="rolling"] line {'
+            + '[data-effect="rolling"] text-line {'
             +     'transition:.6s;'
             +     '-webkit-backface-visibility:hidden;'
             +     'backface-visibility:hidden;'
@@ -168,7 +168,7 @@
             +     'transform-style:preserve-3d;'
             +     'transform:rotatex(90deg);'
             + '}'
-            + '[data-effect="rolling"] line[effect-end] {'
+            + '[data-effect="rolling"] text-line[effect-end] {'
             +     '-webkit-transform:rotatex(0deg);'
             +     'transform:rotatex(0deg);'
             + '}',
