@@ -66,7 +66,7 @@ Fourth Line.<br/>
 </div>
 ```
 
-After lining, only the second and third line tag will be created. Check out the demo.
+After lining, only the second and third line tag will be created. Check out the [demo](http://jsbin.com/riweb/2/edit?output).
 
 And `data-line-class` help you control the class name of line tags, if you don't want to use the default class name: `line`.
 
