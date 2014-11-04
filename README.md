@@ -50,9 +50,9 @@ If you want your line style support Responsive web design. Make sure you add the
 <div class="poem" data-lining data-auto-resize>Some text...</div>
 ```
 
-data-from & data-to
+Other attributes
 --
-Those two attributes help you control which line tags to be created. For example:
+`data-from` and `data-to` help help you control which line tags to be created. For example:
 
 ```html
 <div class="poem"
@@ -67,6 +67,8 @@ Fourth Line.<br/>
 ```
 
 After lining, only the second and third line tag will be created. Check out the demo.
+
+And `data-line-class` help you control the class name of line tags, if you don't want to use the default class name: `line`.
 
 Javascript
 --
@@ -96,7 +98,8 @@ var poemLining = lining(poem, {
     // optional config
     'autoResize': true,
     'from': 2,
-    'to': 3
+    'to': 3,
+    'lineClass': 'my-class'
 });
 // `unlining` method will remove all line tags.
 poemLining.unlining();
