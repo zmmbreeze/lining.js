@@ -275,14 +275,37 @@ a.tip:hover {
     color: #999;
 }
 
-/* demo-4 effects */
+/* demo-4 vtxt */
 .demo-4 {
-    background-color: #5978fb;
+    background-color: tomato;
 }
 .demo-4 .v-center {
-    height: 560px;
+    height: 460px;
 }
 .demo-4 .switcher {
+    margin-top: 180px;
+
+}
+.vtxt {
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+    font-size: 24px;
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "Wenquanyi Micro Hei", sans-serif, "Apple Color Emoji";
+    color: #FFF;
+}
+.vtxt .line:nth-of-type(2n+1) {
+    color: #333;
+}
+
+
+/* demo-5 effects */
+.demo-5 {
+    background-color: #5978FB;
+}
+.demo-5 .v-center {
+    height: 560px;
+}
+.demo-5 .switcher {
     float: left;
     position: static;
     margin: 1em 0 0 0;
