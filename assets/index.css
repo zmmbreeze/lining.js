@@ -277,7 +277,7 @@ a.tip:hover {
 
 /* demo-4 vtxt */
 .demo-4 {
-    background-color: tomato;
+    background-color: #FFFEE2;
 }
 .demo-4 .v-center {
     height: 460px;
@@ -291,10 +291,15 @@ a.tip:hover {
     writing-mode: vertical-rl;
     font-size: 24px;
     font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "Wenquanyi Micro Hei", sans-serif, "Apple Color Emoji";
-    color: #FFF;
-}
-.vtxt .line:nth-of-type(2n+1) {
     color: #333;
+}
+.vtxt .line:first-of-type {
+    font-size: 1.5em;
+    color: #D0496A;
+}
+.vtxt .line:first-of-type small {
+    color: #333;
+    font-size: .6666666em;
 }
 
 
