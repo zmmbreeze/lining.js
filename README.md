@@ -3,6 +3,8 @@ LINING.JS
 
 A easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.
 
+<img src="https://travis-ci.org/zmmbreeze/lining.js.svg?branch=master"/>
+
 In CSS we already have the selector `::first-line` to apply style on the first line of element. But there is no selector like `::nth-line()`, `::nth-last-line()` or even `::last-line`. Then I read an article [A Call for ::nth-everything](http://css-tricks.com/a-call-for-nth-everything/) from CSS tricks. `::nth-line()` is actually really useful in some situation.
 
 There comes [LINING.JS](http://zencode.in/lining.js/). It offers you complete DOWN-TO-THE-LINE control like this:

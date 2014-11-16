@@ -23,11 +23,25 @@ module.exports = function(grunt) {
                 browser: true
             },
             all: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js']
+        },
+        jasmine: {
+            components: {
+                src: [
+                    'src/lining.js',
+                    'src/lining.effect.js'
+                ],
+                options: {
+                    specs: 'spec/*.js',
+                    keepRunner : true
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
 
     grunt.registerTask('default', ['jshint', 'uglify']);
+    grunt.registerTask('travis', ['jshint', 'jasmine']);
 };
