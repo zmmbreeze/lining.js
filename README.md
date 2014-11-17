@@ -22,11 +22,11 @@ There comes [LINING.JS](http://zencode.in/lining.js/). It offers you complete DO
 ```
 
 Supported browsers 
-<img src="assets/chrome_256x256.png" width="24" height="24" alt="Lastest chrome">
-<img src="assets/firefox_256x256.png" width="24" height="24" alt="Lastest firefox">
-<img src="assets/safari_256x256.png" width="24" height="24" alt="Lastest safari">
-<img src="assets/safari-ios_256x256.png" width="24" height="24" alt="Lastest mobile safari">
-<img src="assets/opera_256x256.png" width="24" height="24" alt="Lastest opera">
+<img src="assets/chrome_256x256.png" width="24" height="24" alt="Lastest Chrome" title="Latest Chrome">
+<img src="assets/firefox_256x256.png" width="24" height="24" alt="Lastest Firefox" title="Latest Firefox">
+<img src="assets/safari_256x256.png" width="24" height="24" alt="Lastest Safari" title="Latest Safari">
+<img src="assets/safari-ios_256x256.png" width="24" height="24" alt="Lastest Mobile Safari" title="Lastest Mobile Safari">
+<img src="assets/opera_256x256.png" width="24" height="24" alt="Lastest Opera" title="Lastest Opera">
 
 BASIC USAGE
 --

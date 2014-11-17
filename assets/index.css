@@ -290,7 +290,7 @@ a.tip:hover {
     -webkit-writing-mode: vertical-rl;
     writing-mode: vertical-rl;
     font-size: 24px;
-    font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "Wenquanyi Micro Hei", sans-serif, "Apple Color Emoji";
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", sans-serif, "Apple Color Emoji";
     color: #333;
 }
 .vtxt .line:first-of-type {
