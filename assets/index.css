@@ -437,6 +437,12 @@ a.download:hover {
     text-decoration: none;
 }
 
+/* share-info */
+.main .share-info {
+    margin: 0 0 6em 0;
+    text-align: center;
+}
+
 /**
  * select style
  * Copy from http://cssdeck.com/labs/styling-select-box-with-css3
@@ -489,4 +495,6 @@ label:before {
     pointer-events:none;
     display:block;
 }
+
+
 

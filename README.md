@@ -1,7 +1,7 @@
 LINING.JS
 ==
 
-A easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.
+An easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.
 
 <img src="https://travis-ci.org/zmmbreeze/lining.js.svg?branch=master"/>
 
