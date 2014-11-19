@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         uglify: {
             core: {
                 options: {
-                    banner: '/*! lining.min.js v<%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                    banner: '/*! lining.min.js v<%= pkg.version %>(c) <%= grunt.template.today("yyyy-mm-dd") MZhou @license MIT %> */\n'
                 },
                 files: {
                     'build/lining.min.js': ['src/lining.js'],
@@ -13,7 +13,7 @@ module.exports = function(grunt) {
             },
             effect: {
                 options: {
-                    banner: '/*! lining.effect.min.js v<%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                    banner: '/*! lining.effect.min.js v<%= pkg.version %> (c) <%= grunt.template.today("yyyy-mm-dd") MZhou @license MIT %> */\n'
                 },
                 files: {
                     'build/lining.effect.min.js': ['src/lining.effect.js']
