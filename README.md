@@ -1,7 +1,7 @@
 LINING.JS
 ==
 
-An easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.
+> An easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.
 
 <img src="https://travis-ci.org/zmmbreeze/lining.js.svg?branch=master"/>
 
@@ -121,4 +121,13 @@ lining.effect.js
 <div data-lining data-effect="rolling">
 Your text...
 <div>
+```
+
+INSTALL
+--
+
+[DOWNLOAD](https://github.com/zmmbreeze/lining.js/releases) or using [bower](http://bower.io/) to install like this:
+
+```sh
+$ bower install lining.js
 ```
