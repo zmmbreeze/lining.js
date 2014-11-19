@@ -3,12 +3,19 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
-            options: {
-                banner: '/*! <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-            },
-            build: {
+            core: {
+                options: {
+                    banner: '/*! lining.min.js v<%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                },
                 files: {
                     'build/lining.min.js': ['src/lining.js'],
+                }
+            },
+            effect: {
+                options: {
+                    banner: '/*! lining.effect.min.js v<%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                },
+                files: {
                     'build/lining.effect.min.js': ['src/lining.effect.js']
                 }
             }
