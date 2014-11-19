@@ -1,0 +1,23 @@
+{
+  "name": "lining.js",
+  "version": "0.3.2",
+  "homepage": "https://github.com/zmmbreeze/lining.js",
+  "authors": [
+    "zmmbreeze <zmmbreeze0825@gmail.com>"
+  ],
+  "description": "An easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.",
+  "main": "src/lining.js",
+  "keywords": [
+    "css",
+    "nth-line",
+    "lining"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,6 +1,21 @@
 {
-  "name": "Lining.js",
+  "name": "lining.js",
   "version": "0.3.2",
+  "description": "An easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.",
+  "homepage": "http://zencode.in/lining.js/",
+  "keywords": ["css", "nth-line", "lining"],
+  "maintainers": [
+    {
+      "name": "zmmbreeze",
+      "web": "https://github.com/zmmbreeze"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/zmmbreeze/lining.js"
+    }
+  ],
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-jshint": "~0.10.0",
