@@ -9,8 +9,7 @@ module.exports = function(grunt) {
             build: {
                 files: {
                     'build/lining.min.js': ['src/lining.js'],
-                    'build/lining.effect.min.js': ['src/lining.effect.js'],
-                    'build/lining.all.min.js': ['src/lining.js', 'src/lining.effect.js']
+                    'build/lining.effect.min.js': ['src/lining.effect.js']
                 }
             }
         },

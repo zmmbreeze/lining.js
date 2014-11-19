@@ -117,8 +117,6 @@ lining.effect.js
 ```html
 <script src="YOUR_PATH/lining.min.js"></script>
 <script src="YOUR_PATH/lining.effect.min.js"></script>
-<!-- Or using lining.all.min.js instead, it includes both of those two file. -->
-<!-- <script src="YOUR_PATH/lining.all.min.js"></script> -->
 
 <div data-lining data-effect="rolling">
 Your text...
