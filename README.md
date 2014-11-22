@@ -131,3 +131,15 @@ INSTALL
 ```sh
 $ bower install lining.js
 ```
+
+### CDN
+
+jsDelivr provides free CDN hosting which helps speed webpage loading.  Usage is simple:
+```html
+<script src="//cdn.jsdelivr.net/lining.js/VERSION/lining.min.js"></script>
+```
+then change `VERSION` with the version number you can find [hosted at jsDelivr](http://www.jsdelivr.com/#!lining.js).<br>
+If you want to also use effects, you can take advantage of collating and reduce a HTTP request:
+```html
+<script src="//cdn.jsdelivr.net/g/lining.js@VERSION(lining.min.js+lining.effect.min.js)"></script>
+```
