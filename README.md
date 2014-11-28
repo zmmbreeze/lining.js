@@ -143,3 +143,10 @@ If you want to also use effects, you can take advantage of collating and reduce 
 ```html
 <script src="//cdn.jsdelivr.net/g/lining.js@VERSION(lining.min.js+lining.effect.min.js)"></script>
 ```
+
+Other
+--
+
+- [Post from Dailyjs](http://dailyjs.com/2014/11/17/protractor-perf-lining/#liningjs)
+- [#liningjs](https://twitter.com/hashtag/liningjs)
+- [中文首页](http://zencode.in/lining.js/index_cn.html)

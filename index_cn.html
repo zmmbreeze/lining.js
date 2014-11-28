@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lining.js</title>
+    <meta name="Keywords" content="lining.js,typography,line,javascript,css,排版">
+    <meta name="Description" content="用CSS来控制文字行的样式">
+    <link href='http://fonts.useso.com/css?family=Roboto+Slab|Calligraffitti|Inconsolata|Dancing+Script|Handlee|Allerta+Stencil' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/normalize.css" />
+    <link rel="stylesheet" href="assets/index.css" />
+    <style>
+    body {
+        font-family: 'Roboto Slab', "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", serif;
+    }
+    </style>
+    <link rel="stylesheet" href="assets/prism.css" />
+    <script src="build/lining.min.js"></script>
+    <script src="build/lining.effect.min.js"></script>
+</head>
+<body>
+
+<a href="https://github.com/zmmbreeze/lining.js" target="_blank"><img style="position:fixed;top:0;right:0;z-index:999;border:0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+<div class="main">
+    <div class="center">
+        <div class="v-center">
+            <h1>Lining.js</h1>
+            <p>CSS中已经存在了<code>::first-line</code>选择器可以用来设置第一行文字的样式。但是目前还没有选择器可以设置任意行的样式，例如：<code>::nth-line()</code>、<code>::nth-last-line()</code>或者<code>::last-line</code>这样的。CSS tricks上有一篇文章<a href="http://css-tricks.com/a-call-for-nth-everything/" target="_blank">A Call for ::nth-everything</a>描述了此类选择器的使用场景。</p>
+            <p>于是我写了这个js插件<strong><a href="https://github.com/zmmbreeze/lining.js" target="_blank">Lining.js</a></strong>。它和<a href="http://letteringjs.com/" target="_blank">Lettering.js</a>类似为文字段落生成行标签<code>text-line</code>，便可以让你控制段落中任意行的样式！DEMO如下：</p>
+            <pre><code class="language-markup">&lt;div class="poem" data-lining&gt;Some text...&lt;/div&gt;
+&lt;style&gt;
+.poem .line[first] { /* `.poem::first-line`*/ }
+.poem .line[last] { /* `.poem::last-line` */ }
+.poem .line[index="5"] { /* `.poem::nth-line(5)` */ }
+.poem .line:nth-of-type(-n+2) { /* `.poem::nth-line(-n+2)` */ }
+.poem .line:nth-last-of-type(2n) { /* `.poem:::nth-last-line(2n)` */ }
+&lt;/style&gt;
+&lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
+</code></pre>
+            <p>支持的浏览器：
+                <img src="assets/chrome_256x256.png" width="24" height="24" alt="Lastest chrome">
+                <img src="assets/firefox_256x256.png" width="24" height="24" alt="Lastest firefox">
+                <img src="assets/safari_256x256.png" width="24" height="24" alt="Lastest safari">
+                <img src="assets/safari-ios_256x256.png" width="24" height="24" alt="Lastest mobile safari">
+                <img src="assets/opera_256x256.png" width="24" height="24" alt="Lastest opera">
+            </p>
+        </div>
+        <a href="#demo-1" class="tip">DEMO</a>
+    </div>
+</div>
+
+<div class="demo demo-1" id="demo-1">
+    <div class="center">
+        <div class="v-center">
+            <div data-lining class="poem preview">
+                As soon as wolf began to feel that he would like a decent meal, He went and knocked on Grandma's door.<br/> When Grandma opened it, she saw<br/> The sharp white teeth, the horrid grin,<br/> And Wolfie said, 'May I come in?'<br/> Poor Grandmamma was terrified,<br/> 'He's going to eat me up!' she cried.
+            </div>
+            <div class="code">
+                <pre><code class="language-css">.poem {
+    line-height: 40px;
+    font-size: 32px;
+    font-family: 'Dancing Script' serif;
+}
+.poem .line:nth-of-type(-n+2) {
+    font-size: 42px;
+    color: #DA4453;
+}</code></pre>
+            </div>
+        </div>
+        <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
+        <a href="#demo-2" class="tip">NEXT</a>
+    </div>
+</div>
+
+<div class="demo demo-2" id="demo-2">
+    <div class="center">
+        <div class="v-center">
+            <div data-lining class="fadeout preview">
+                If you want to view paradise<br/>
+                Simply look around and view it<br/>
+                Anything you want to, do it<br/>
+                Want to change the world,<br/>
+                there's nothing to it<br/>
+                There is no life I know<br/>
+                To compare with<br/>
+                pure imagination
+            </div>
+            <div class="code">
+                <pre><code class="language-css">.fadeout {
+    font-size: 36px;
+    line-height: 36px;
+    color: hsla(354, 67%, 46%, 1);
+    font-family: 'Handlee' serif;
+}
+.fadeout .line:nth-last-of-type(3) {
+   color: hsla(354, 67%, 55%, 1);
+   font-size: 80%;
+}
+.fadeout .line:nth-last-of-type(2) {
+   color: hsla(354, 67%, 60%, 1);
+   font-size: 70%;
+}
+.fadeout .line:nth-last-of-type(1) {
+   color: hsla(354, 67%, 65%, 1);
+   font-size: 60%
+}</code></pre>
+            </div>
+        </div>
+        <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
+        <a href="#demo-3" class="tip">NEXT</a>
+    </div>
+</div>
+
+<div class="demo demo-3" id="demo-3">
+    <div class="center">
+        <div class="v-center">
+            <div data-lining class="linenumber preview">
+            <h3>What is typography</h3>
+            <p>Typography (from the Greek words τύπος typos "form" and γράφειν graphein "to write") is the art and technique of arranging type to make written language most appealing to learning and recognition. The arrangement of type involves selecting typefaces, point size, line length, line-spacing (leading), letter-spacing (tracking), and adjusting the space within letters pairs (kerning[2]). Type design is a closely related craft, sometimes considered part of typography; most typographers do not design typefaces, and some type designers do not consider themselves typographers. In modern times, typography has been put in film, television and online broadcasts to add emotion to communication.<br/>
+            From <a href="http://en.wikipedia.org/wiki/Typography" target="_blank">Wikipedia</a>.</P>
+            </div>
+            <div class="code">
+                <pre><code class="language-css">.linenumber .line {
+    position: relative;
+    margin-left: 32px; /* 16 * 2*/
+}
+.linenumber .line:before {
+    content: attr(index) '.';
+    position: absolute;
+    right: 10px;
+    margin-right: 100%;
+    width: 1em;
+    font-size: 16px;
+    text-align: center;
+    color: #999;
+}</code></pre>
+            </div>
+        </div>
+        <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
+        <a href="#demo-4" class="tip">NEXT</a>
+    </div>
+</div>
+
+<div class="demo demo-4" id="demo-4">
+    <div class="center">
+        <div class="v-center">
+            <div class="vtxt preview" data-lining>
+桃花庵歌 <small>唐寅</small><br/>
+桃花塢裡桃花庵，桃花庵下桃花仙。<br/>
+桃花仙人種桃樹，又摘桃花換酒錢。<br/>
+酒醒只在花前坐，酒醉還來花下眠。<br/>
+半醉半醒日復日，花落花開年復年。<br/>
+但願老死花酒間，不願鞠躬車馬前。<br/>
+車塵馬足顯者事，酒盞花枝隱士緣。<br/>
+若將顯者比隱士，一在平地一在天。<br/>
+若將花酒比車馬，彼何碌碌我何閒。<br/>
+別人笑我太瘋癲，我笑他人看不穿。<br/>
+不見五陵豪傑墓，無花無酒鋤作田。<br/>
+            </div>
+            <div class="code">
+                <pre class="language-css"><code class="language-css">.vtxt {
+    font-size: 24px;
+    color: #333;
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+}
+.vtxt .line:first-of-type {
+    font-size: 1.5em;
+    color: #D0496A;
+}
+.vtxt .line:first-of-type small {
+    color: #333;
+    font-size: .6666666em;
+}
+</code></pre>
+            </div>
+        </div>
+        <a class="switcher" data-do="toggle" data-status="0" href="###">SHOW CODE</a>
+        <a href="#demo-5" class="tip">NEXT</a>
+    </div>
+</div>
+
+<div class="demo demo-5" id="demo-5">
+    <div class="center">
+        <div class="v-center">
+            <div class="effects preview">
+                <div id="effectText" class="effects-text">
+                    <h3>The Furthest Distance In The World</h3>
+                    <h4>by Rabindranath Tagore</h4>
+                    <p>The furthest distance in the world<br/>
+                    Is not between life and death<br/>
+                    But when I stand in front of you<br/>
+                    Yet you don't know that I love you.</p>
+                    <p>The furthest distance in the world<br/>
+                    Is not when I stand in front of you<br/>
+                    Yet you can't see my love<br/>
+                    But when undoubtly knowing the love from both<br/>
+                    Yet cannot be together.</p>
+                    <p>The furthest distance in the world<br/>
+                    Is not being apart while being in love<br/>
+                    But when I plainly cannot resist the yearning<br/>
+                    Yet pretending you have never been in my heart.</p>
+                    <p>The furthest distance in the world<br/>
+                    Is not struggling against the tides<br/>
+                    But using one's indifferent heart<br/>
+                    To dig an uncrossable river<br/>
+                    For the one who loves you.</p>
+                </div>
+                <div class="effects-do">
+                    <label>
+                    <select id="effectName">
+                        <option value="fadeIn">fadeIn</option>
+                        <option value="slideIn">slideIn</option>
+                        <option value="slideInFromLeft">slideInFromLeft</option>
+                        <option value="slideInFromRight">slideInFromRight</option>
+                        <option value="rolling">rolling</option>
+                    </select>
+                    </label>
+                    <button data-do="run-effect">GO!</button>
+                </div>
+                <a class="switcher" data-do="show-code" href="###">SHOW CODE</a>
+            </div>
+            <div class="code">
+                <pre class="language-markup"><code class="language-markup">&lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
+&lt;script src="YOUR_PATH/lining.effect.min.js"&gt;&lt;/script&gt;
+
+&lt;div data-lining data-effect="rolling"&gt;
+Your text...
+&lt;div&gt;</code></pre>
+                <a class="switcher" data-do="preview" href="###">PREVIEW</a>
+            </div>
+        </div>
+        <a href="#usage" class="tip">USAGE</a>
+    </div>
+</div>
+
+<div class="main usage" id="usage">
+    <div class="center">
+        <h2>使用方法</h2>
+        <p>你只需要将<code>data-lining</code>属性设置到包含文字的块级元素上，然后引入<code>lining.min.js</code>文件即可。接下来你就可以写CSS样式来设置文字行的样式了，如下：</p>
+        <pre><code class="language-markup">&lt;div class="poem" data-lining&gt;Some text...&lt;/div&gt;
+&lt;style&gt;
+.poem { /* 默认样式 */ }
+.nolining .poem { /* 浏览器不支持lining.js时生效 */ }
+.poem[data-lining] { /* 浏览器支持lining.js时生效 */ }
+.poem[data-lining="end"] { /* 每行的`text-line`标签生成后生效 */ }
+.poem .line { /* 每行的样式 */ }
+&lt;/style&gt;
+&lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+        <h2>自适应宽度</h2>
+        <p>如果你使用了响应式设计，那么你需要加上属性<code>data-auto-resize</code>。这样Lining.js会在浏览器窗口缩放时自动重新计算行标签。</p>
+        <pre><code class="language-markup">&lt;div class="poem" data-lining data-auto-resize&gt;Some text...&lt;/div&gt;</code></pre>
+
+        <h2>其他属性</h2>
+        <p><code>data-from</code>和<code>data-to</code>属性可以用来控制创建固定范围内的行标签。例如：</p>
+        <pre><code class="language-markup">&lt;div class="poem"
+    data-lining
+    data-from="2"
+    data-to="3"&gt;
+First Line.&lt;br/&gt;
+Second Line.&lt;br/&gt;
+Third Line.&lt;br/&gt;
+Fourth Line.&lt;br/&gt;
+&lt;/div&gt;
+</code></pre>
+        <p>上面的例子中只会创建第二行和第三行的行标签。这里有个<a href="http://jsbin.com/riweb/2/edit?output" target="_blank">demo</a>可以看看生成后的HTML是什么样的。</p>
+        <p>还有一个属性<code>data-line-class</code>可以控制每个行标签的class name。如果默认的class name <code>.line</code>被占用了，则可以设置成其他值。</p>
+
+        <h2>Javascript</h2>
+        <p>你也可以通过js来控制行标签的创建，并且Lining.js还提供了几个特殊的事件，帮助你做更多有意思的idea。</p>
+        <pre><code class="language-markup">&lt;div id="poem"&gt;Some text..&lt;/div&gt;
+&lt;script&gt;
+var poem = document.getElementById('poem');
+poem.addEventListener('beforelining', function (e) {
+    // 可以在beforelining事件中组织行标签的创建
+    e.preventDefault();
+}, false);
+poem.addEventListener('afterlining', function () {
+    // 在行标签创建结束后执行的事件
+}, false);
+poem.addEventListener('beforeunlining', function () {
+    // 在删除行标签之前执行的事件
+}, false);
+poem.addEventListener('afterunlining', function () {
+    // 在删除行标签之后执行的事件
+}, false);
+
+
+var poemLining = lining(poem, {
+    // 可选配置
+    'autoResize': true,
+    'from': 2,
+    'to': 3,
+    'lineClass': 'my-class'
+});
+// `unlining` 方法会删除所有的行标签
+poemLining.unlining();
+// `relining` 方法会先删除所有行标签，然后重新生成新的行标签
+poemLining.relining();
+&lt;/script&gt;
+</code></pre>
+
+        <h2>lining.effect.js</h2>
+        <p><code>lining.effect.js</code>是<code>lining.js</code>额外的一部分。它提供了一些有意思的行动画样式。使用方法如下：</p>
+        <pre><code class="language-markup">&lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
+&lt;script src="YOUR_PATH/lining.effect.min.js"&gt;&lt;/script&gt;
+
+&lt;div data-lining data-effect="rolling"&gt;
+Your text...
+&lt;div&gt;</code></pre>
+
+        <div class="install">
+            <a href="https://github.com/zmmbreeze/lining.js/releases" target="_blank" class="download">DOWNLOAD</a>
+            或
+            <code class="bower"><span>$</span> bower install lining.js</code><br/>
+            或使用jsDelivr CDN<br/>
+            <pre class="cdn"><code class="language-markup">&lt;script src="//cdn.jsdelivr.net/lining.js/0.3.2/lining.min.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+        <p class="share-info">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-text="An easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography." data-size="large" data-hashtags="liningjs">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            <a href="https://twitter.com/zhoumm" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @zhoumm</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </p>
+    </div>
+</div>
+
+<a href="###" data-do="top" class="top"></a>
+
+<script>
+// set style for body
+document.body.style.height = document.documentElement.clientHeight + 'px';
+window.addEventListener('resize', function () {
+    document.body.style.height = document.documentElement.clientHeight + 'px';
+});
+</script>
+<script src="assets/prism.js"></script>
+<script>
+var g = function (id) {
+    return document.getElementById(id);
+};
+// -------------------------
+// actions
+// -------------------------
+var effectLining;
+var actions = {
+    'toggle': function (target) {
+        var status = target.getAttribute('data-status');
+        var prev = target.previousElementSibling;
+        if (status === '1') {
+            // show preview
+            prev.removeAttribute('show-code');
+            target.setAttribute('data-status', '0');
+            target.innerHTML = 'SHOW CODE';
+        }
+        else {
+            // show code
+            prev.setAttribute('show-code', '');
+            target.setAttribute('data-status', '1');
+            target.innerHTML = 'PREVIEW';
+        }
+    },
+    'preview': function (target) {
+        target.parentNode.parentNode.removeAttribute('show-code');
+    },
+    'show-code': function (target) {
+        target.parentNode.parentNode.setAttribute('show-code', '');
+    },
+    'top': function () {
+        if (window.scrollTo) {
+            window.scrollTo(0, 0);
+        }
+    },
+    'run-effect': function (target) {
+        var effectName = g('effectName').value;
+        var effectText = g('effectText');
+        effectText.setAttribute('data-effect', effectName);
+        if (!effectLining) {
+            effectLining = lining(effectText);
+        }
+        else {
+            effectLining.relining(true);
+        }
+    }
+};
+
+window.addEventListener('load', function () {
+    document.body.addEventListener('click', function (e) {
+        var target = e.target;
+        var actionName = target.getAttribute('data-do');
+        if (!actionName) {
+            return;
+        }
+
+        e.preventDefault();
+        actions[actionName](target);
+    }, false);
+});
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36422454-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</div>
+</body>
+</html>
