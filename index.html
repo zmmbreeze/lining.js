@@ -237,7 +237,7 @@ Your text...
 .poem { /* default style for `.poem` */ }
 .nolining .poem { /* style for `.poem` when browser don't support lining.js */ }
 .poem[data-lining] { /* style for `.poem` when browser support lining.js */ }
-.poem[data-lining="end"] { /* style for `.poem` when `line` tags created */ }
+.poem[data-lining="end"] { /* style for `.poem` when `text-line` tags created */ }
 .poem .line { /* style for lines */ }
 &lt;/style&gt;
 &lt;script src="YOUR_PATH/lining.min.js"&gt;&lt;/script&gt;
@@ -308,11 +308,13 @@ poemLining.relining();
 Your text...
 &lt;div&gt;</code></pre>
 
-        <p class="install">
+        <div class="install">
             <a href="https://github.com/zmmbreeze/lining.js/releases" target="_blank" class="download">DOWNLOAD</a>
             or
-            <code><span>$</span> bower install lining.js</code>
-        </p>
+            <code class="bower"><span>$</span> bower install lining.js</code><br/>
+            or using CDN provided by <a href="http://www.jsdelivr.com/" target="_blank">jsDelivr</a><br/>
+            <pre class="cdn"><code class="language-markup">&lt;script src="//cdn.jsdelivr.net/lining.js/0.3.2/lining.min.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
         <p class="share-info">
             <a href="https://twitter.com/share" class="twitter-share-button" data-text="An easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography." data-size="large" data-hashtags="liningjs">Tweet</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

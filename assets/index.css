@@ -422,6 +422,7 @@ a.tip:hover {
 .main .install {
     margin: 4em 0;
     text-align: center;
+    line-height: 50px;
 }
 .download {
     display: inline-block;
@@ -442,7 +443,7 @@ a.download:hover {
     text-decoration: none;
 }
 
-.install code {
+.install .bower {
     display: inline-block;
     margin: 0 18px;
     padding: 0 18px 0 0;
@@ -452,12 +453,18 @@ a.download:hover {
     color: #EEE;
     background: #543729;
 }
-.install code span {
+.install .bower span {
     float: left;
     width: 2em;
     display: inline-block;
     text-align: center;
     color: #A9D866;
+}
+
+.install .cdn {
+    margin: 0;
+    padding: 1em;
+    display: inline-block;
 }
 
 /* share-info */
