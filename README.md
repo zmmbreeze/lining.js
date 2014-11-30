@@ -149,4 +149,5 @@ Other
 
 - [Post from Dailyjs](http://dailyjs.com/2014/11/17/protractor-perf-lining/#liningjs)
 - [#liningjs](https://twitter.com/hashtag/liningjs)
+- [Demo for lining.js working with scrollReveal.js](http://codepen.io/zmmbreeze/pen/dPYYOo)
 - [中文首页](http://zencode.in/lining.js/index_cn.html)
