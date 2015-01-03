@@ -14,7 +14,7 @@
         return;
     }
 
-    document.addEventListener('beforelining', function (e) {
+    lining.util.on(document, 'beforelining', function (e) {
         var target = e.target;
         var effectName = target.getAttribute('data-effect');
         var effect = Effects[effectName];
@@ -23,7 +23,7 @@
         }
     });
 
-    document.addEventListener('afterlining', function (e) {
+    lining.util.on(document, 'afterlining', function (e) {
         var target = e.target;
         var effectName = target.getAttribute('data-effect');
         var effect = Effects[effectName];
