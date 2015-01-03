@@ -25,6 +25,20 @@
 
     var util = {
         /**
+         * bind event.
+         * @param {Element|Window} element target element
+         * @param {string} type event name
+         * @param {Function} listener listener
+         */
+        on: function (element, type, listener) {
+            if (element.addEventListener) {
+                element.addEventListener(type, listener, false);
+            }
+            else if (element.attachEvent) {
+                element.attachEvent('on' + type, function(){ listener.call(element); });
+            }
+        },
+        /**
          * fire event
          * @param {Element} element
          * @param {string} type
@@ -291,7 +305,9 @@
 
             var Selection = win['Selection'];
             var result = !!(Selection && Selection.prototype && Selection.prototype.modify);
-            doc.documentElement.className += ' nolining';
+            if (!result) {
+                doc.documentElement.className += ' nolining';
+            }
             util.isSupported.re = result;
             return result;
         },
@@ -907,12 +923,12 @@
     lining.Lining = Lining;
     lining.util = util;
 
-    win.addEventListener('load', function () {
+    util.on(window, 'load', function () {
         var elements = doc.querySelectorAll('[data-lining]');
         var e;
         for (var i = 0, l = elements.length; i < l; i++) {
             e = elements[i];
             lining(e);
         }
-    }, false);
+    });
 })(window, document);

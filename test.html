@@ -63,20 +63,20 @@
     }
 
     var demo = document.getElementById('demo');
-    demo.addEventListener('beforelining', function (e) {
+    lining.util.on(demo, 'beforelining', function (e) {
         var t = e.target;
         // e.preventDefault();
         console.log('beforelining: ' + (t.getAttribute('data-lining') === 'end'));
     });
-    demo.addEventListener('afterlining', function (e) {
+    lining.util.on(demo, 'afterlining', function (e) {
         var t = e.target;
         console.log('afterlining: ' + (t.getAttribute('data-lining') === 'end'));
     });
-    demo.addEventListener('beforeunlining', function (e) {
+    lining.util.on(demo, 'beforeunlining', function (e) {
         var t = e.target;
         console.log('beforeunlining: ' + (t.getAttribute('data-lining') === 'end'));
     });
-    demo.addEventListener('afterunlining', function (e) {
+    lining.util.on(demo, 'afterunlining', function (e) {
         var t = e.target;
         console.log('afterunlining: ' + (t.getAttribute('data-lining') === 'end'));
     });

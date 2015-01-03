@@ -267,18 +267,18 @@ Fourth Line.&lt;br/&gt;
         <pre><code class="language-markup">&lt;div id="poem"&gt;Some text..&lt;/div&gt;
 &lt;script&gt;
 var poem = document.getElementById('poem');
-poem.addEventListener('beforelining', function (e) {
+lining.util.on(poem, 'beforelining', function (e) {
     // prevent lining if you want
     e.preventDefault();
 }, false);
-poem.addEventListener('afterlining', function () {
+lining.util.on(poem, 'afterlining', function () {
     // do something after lining
 }, false);
-poem.addEventListener('beforeunlining', function () {
+lining.util.on(poem, 'beforeunlining', function () {
     // do something before unlining
     // can't prevent unlining
 }, false);
-poem.addEventListener('afterunlining', function () {
+lining.util.on(poem, 'afterunlining', function () {
     // do something after unlining
 }, false);
 
@@ -329,7 +329,7 @@ Your text...
 <script>
 // set style for body
 document.body.style.height = document.documentElement.clientHeight + 'px';
-window.addEventListener('resize', function () {
+lining.util.on(window, 'resize', function () {
     document.body.style.height = document.documentElement.clientHeight + 'px';
 });
 </script>
@@ -383,8 +383,8 @@ var actions = {
     }
 };
 
-window.addEventListener('load', function () {
-    document.body.addEventListener('click', function (e) {
+lining.util.on(window, 'load', function () {
+    lining.util.on(document.body, 'click', function (e) {
         var target = e.target;
         var actionName = target.getAttribute('data-do');
         if (!actionName) {

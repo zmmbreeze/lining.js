@@ -58,3 +58,17 @@ body {
     padding: 0 10px;
     background-color: #EFEFEF;
 }
+
+.nolining h1 {
+    color: red;
+}
+.nolining h1 {
+    position: relative;
+}
+.nolining h1:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: 'not supported';
+    font-size: 16px;
+}

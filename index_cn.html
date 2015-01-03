@@ -272,17 +272,17 @@ Fourth Line.&lt;br/&gt;
         <pre><code class="language-markup">&lt;div id="poem"&gt;Some text..&lt;/div&gt;
 &lt;script&gt;
 var poem = document.getElementById('poem');
-poem.addEventListener('beforelining', function (e) {
+lining.util.on(poem, 'beforelining', function (e) {
     // 可以在beforelining事件中组织行标签的创建
     e.preventDefault();
 }, false);
-poem.addEventListener('afterlining', function () {
+lining.util.on(poem, 'afterlining', function () {
     // 在行标签创建结束后执行的事件
 }, false);
-poem.addEventListener('beforeunlining', function () {
+lining.util.on(poem, 'beforeunlining', function () {
     // 在删除行标签之前执行的事件
 }, false);
-poem.addEventListener('afterunlining', function () {
+lining.util.on(poem, 'afterunlining', function () {
     // 在删除行标签之后执行的事件
 }, false);
 
@@ -331,7 +331,7 @@ Your text...
 <script>
 // set style for body
 document.body.style.height = document.documentElement.clientHeight + 'px';
-window.addEventListener('resize', function () {
+lining.util.on(window, 'resize', function () {
     document.body.style.height = document.documentElement.clientHeight + 'px';
 });
 </script>
@@ -385,8 +385,8 @@ var actions = {
     }
 };
 
-window.addEventListener('load', function () {
-    document.body.addEventListener('click', function (e) {
+lining.util.on(window, 'load', function () {
+    lining.util.on(document.body, 'click', function (e) {
         var target = e.target;
         var actionName = target.getAttribute('data-do');
         if (!actionName) {
