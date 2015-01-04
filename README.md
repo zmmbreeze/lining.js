@@ -30,7 +30,7 @@ Supported browsers
 
 BASIC USAGE
 --
-All you need to do is adding `data-lining` attribute on your block element and including the `lining.min.js` script. Then you can write css to control it's line style. For example:
+All you need to do is adding `data-lining` attribute on your **block** element and including the `lining.min.js` script. Then you can write css to control it's line style. For example:
 
 ```html
 <div class="poem" data-lining>Some text...</div>
