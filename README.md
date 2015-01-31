@@ -1,5 +1,4 @@
-LINING.JS
-==
+![lining.js](assets/lining_logo.png)
 
 > An easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.
 

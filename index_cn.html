@@ -5,15 +5,21 @@
     <title>Lining.js</title>
     <meta name="Keywords" content="lining.js,typography,line,javascript,css,排版">
     <meta name="Description" content="用CSS来控制文字行的样式">
-    <link href='http://fonts.useso.com/css?family=Roboto+Slab|Calligraffitti|Inconsolata|Dancing+Script|Handlee|Allerta+Stencil' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="assets/normalize.css" />
-    <link rel="stylesheet" href="assets/index.css" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/lining_icon_76.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/lining_icon_76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/lining_icon_76@2x.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/lining_icon_76@2x.png">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Calligraffitti|Inconsolata|Dancing+Script|Handlee|Droid+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/normalize.css">
+    <link rel="stylesheet" href="assets/index.css">
     <style>
     body {
         font-family: 'Roboto Slab', "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", serif;
     }
     </style>
-    <link rel="stylesheet" href="assets/prism.css" />
+    <link rel="stylesheet" href="assets/prism.css">
     <script src="build/lining.min.js"></script>
     <script src="build/lining.effect.min.js"></script>
 </head>
@@ -23,7 +29,10 @@
 <div class="main">
     <div class="center">
         <div class="v-center">
-            <h1>Lining.js</h1>
+            <h1>
+                <img src="assets/lining_icon_web.png" alt="lining.js icon" width="120" height="120">
+                <em class="em-red">lin</em><em class="em-green">ing</em>.js
+            </h1>
             <p>CSS中已经存在了<code>::first-line</code>选择器可以用来设置第一行文字的样式。但是目前还没有选择器可以设置任意行的样式，例如：<code>::nth-line()</code>、<code>::nth-last-line()</code>或者<code>::last-line</code>这样的。CSS tricks上有一篇文章<a href="http://css-tricks.com/a-call-for-nth-everything/" target="_blank">A Call for ::nth-everything</a>描述了此类选择器的使用场景。</p>
             <p>于是我写了这个js插件<strong><a href="https://github.com/zmmbreeze/lining.js" target="_blank">Lining.js</a></strong>。它和<a href="http://letteringjs.com/" target="_blank">Lettering.js</a>类似为文字段落生成行标签<code>text-line</code>，便可以让你控制段落中任意行的样式！DEMO如下：</p>
             <pre><code class="language-markup">&lt;div class="poem" data-lining&gt;Some text...&lt;/div&gt;

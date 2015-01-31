@@ -5,10 +5,16 @@
     <title>Lining.js</title>
     <meta name="Keywords" content="lining.js,typography,line,javascript,css">
     <meta name="Description" content="An easy to use javascript plugin offers you complete DOWN-TO-THE-LINE control for radical web typography.">
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Calligraffitti|Inconsolata|Dancing+Script|Handlee|Allerta+Stencil' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="assets/normalize.css" />
-    <link rel="stylesheet" href="assets/index.css" />
-    <link rel="stylesheet" href="assets/prism.css" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/lining_icon_76.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/lining_icon_76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/lining_icon_76@2x.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/lining_icon_76@2x.png">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Calligraffitti|Inconsolata|Dancing+Script|Handlee|Droid+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/normalize.css">
+    <link rel="stylesheet" href="assets/index.css">
+    <link rel="stylesheet" href="assets/prism.css">
     <script src="build/lining.min.js"></script>
     <script src="build/lining.effect.min.js"></script>
 </head>
@@ -18,7 +24,10 @@
 <div class="main">
     <div class="center">
         <div class="v-center">
-            <h1>Lining.js</h1>
+            <h1>
+                <img src="assets/lining_icon_web.png" alt="lining.js icon" width="120" height="120">
+                <em class="em-red">lin</em><em class="em-green">ing</em>.js
+            </h1>
             <p>In CSS we already have the selector <code>::first-line</code> to apply style on the first line of element. But there is no selector like <code>::nth-line()</code>, <code>::nth-last-line()</code> or even <code>::last-line</code>. Then I read an article <a href="http://css-tricks.com/a-call-for-nth-everything/" target="_blank">A Call for ::nth-everything</a> from CSS tricks. <code>::nth-line()</code> is actually really useful in some situation.</p>
             <p>There comes <strong><a href="https://github.com/zmmbreeze/lining.js" target="_blank">Lining.js</a></strong>. It offers you complete <strong>down-to-the-line</strong> control like this:</p>
             <pre><code class="language-markup">&lt;div class="poem" data-lining&gt;Some text...&lt;/div&gt;
