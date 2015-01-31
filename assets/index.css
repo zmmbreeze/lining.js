@@ -45,7 +45,6 @@ a {
     overflow: hidden;
     line-height: 120px;
     color: #CCC;
-    text-shadow: -1px 3px 0 #EEE;
     font-size: 4em;
     font-weight: bold;
     font-family: 'Droid Sans', sans-serif;
@@ -56,12 +55,10 @@ a {
 .main h1 .em-green {
     font-style: normal;
     color: #53B669;
-    text-shadow: -1px 3px 0 #75D891;
 }
 .main h1 .em-red {
     font-style: normal;
     color: #F35444;
-    text-shadow: -1px 3px 0 #F57666;
 }
 .main p {
     margin: 1em 0;
