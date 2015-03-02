@@ -328,7 +328,7 @@
             return false;
         },
         /**
-         * is node inside `line` node
+         * get all brs outside `line` node
          * @param {Element} root
          * @return {Array.<Element>}
          */
