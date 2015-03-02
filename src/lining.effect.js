@@ -179,5 +179,42 @@
         }
     });
 
+    createEffect('metroRotateIn', {
+        'css': basicCss.replace(/{name}/g, 'metroRotateIn')
+            + '[data-effect="metroRotateIn"] text-line {'
+            +     'transition:400ms transform, 300ms opacity ease-out;'
+            +     'transform:translateX(8%) rotateY(45deg) skewY(2deg);'
+            +     'transform-origin:0 0;'
+            +     'opacity:0;'
+            + '}'
+            + '[data-effect="metroRotateIn"] text-line[effect-end] {'
+            +     'transform:translateX(0) rotateY(0) skewY(0);'
+            +     'opacity:1;'
+            + '}',
+        'after': function (e) {
+            eachLine(e.target, 80, function (lines) {
+                lines.shift().setAttribute('effect-end', '');
+            });
+        }
+    });
+    createEffect('metroRotateOut', {
+        'css': basicCss.replace(/{name}/g, 'metroRotateOut')
+            + '[data-effect="metroRotateOut"] text-line {'
+            +     'transition:300ms transform, 400ms opacity ease-in;'
+            +     'transform:translateX(0) rotateY(0) skewY(0);'
+            +     'transform-origin:0 0;'
+            +     'opacity:1;'
+            + '}'
+            + '[data-effect="metroRotateOut"] text-line[effect-end] {'
+            +     'transform:translateX(8%) rotateY(45deg) skewY(2deg);'
+            +     'opacity:0;'
+            + '}',
+        'after': function (e) {
+            eachLine(e.target, 80, function (lines) {
+                lines.shift().setAttribute('effect-end', '');
+            });
+        }
+    });
+
     lining.util.createStyle(allCssText);
 })(lining);
