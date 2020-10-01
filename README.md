@@ -6,7 +6,7 @@
 
 In CSS we already have the selector `::first-line` to apply style on the first line of element. But there is no selector like `::nth-line()`, `::nth-last-line()` or even `::last-line`. Then I read an article [A Call for ::nth-everything](http://css-tricks.com/a-call-for-nth-everything/) from CSS tricks. `::nth-line()` is actually really useful in some situation.
 
-There comes [LINING.JS](http://zencode.in/lining.js/). It offers you complete DOWN-TO-THE-LINE control like this:
+There comes [LINING.JS](http://zencode.in/lining.js/) . It offers you complete DOWN-TO-THE-LINE control like this :-
 
 ```html
 <div class="poem" data-lining>Some text...</div>
@@ -29,7 +29,7 @@ Supported browsers
 
 BASIC USAGE
 --
-All you need to do is adding `data-lining` attribute on your **block** element and including the `lining.min.js` script. Then you can write css to control it's line style. For example:
+All you need to do is adding `data-lining` attribute on your **block** element and including the `lining.min.js` script . Then you can write css to control it's line style . For example :-
 
 ```html
 <div class="poem" data-lining>Some text...</div>
@@ -45,7 +45,7 @@ All you need to do is adding `data-lining` attribute on your **block** element a
 
 RWD
 --
-If you want your line style support Responsive web design. Make sure you add the `data-auto-resize` attribute. It will automatically relining when window resize event happen.
+If you want your line style support Responsive web design . Make sure you add the `data-auto-resize` attribute . It will automatically relining when window resize event happen .
 
 ```html
 <div class="poem" data-lining data-auto-resize>Some text...</div>
@@ -73,7 +73,7 @@ And `data-line-class` help you control the class name of line tags, if you don't
 
 Javascript
 --
-You can also create and manage line tags by javascript. And give you four events to do special things.
+You can also create and manage line tags by javascript . And give you four events to do special things .
 
 ```html
 <div id="poem">Some text..</div>
